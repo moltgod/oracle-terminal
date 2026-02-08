@@ -281,6 +281,119 @@
       .logo { font-size: 2.5rem; }
       .status-bar { flex-direction: column; gap: 0.5rem; }
     }
+
+    /* Positions Panel */
+    .positions-panel {
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      margin-bottom: 2rem;
+      overflow: hidden;
+    }
+
+    .positions-header {
+      background: var(--bg);
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .positions-title {
+      font-size: 0.7rem;
+      color: var(--fg-dim);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .positions-summary {
+      display: flex;
+      gap: 1.5rem;
+      font-size: 0.75rem;
+    }
+
+    .summary-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .summary-label {
+      color: var(--fg-dim);
+    }
+
+    .summary-value {
+      color: var(--fg);
+      font-weight: 500;
+    }
+
+    .summary-value.positive { color: var(--trade); }
+    .summary-value.negative { color: #ff6b6b; }
+
+    .positions-grid {
+      padding: 1rem;
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    .position {
+      display: grid;
+      grid-template-columns: 1fr auto auto auto;
+      gap: 1rem;
+      padding: 0.75rem;
+      background: var(--bg);
+      border-radius: 4px;
+      font-size: 0.8rem;
+      align-items: center;
+    }
+
+    .position-title {
+      color: var(--fg);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .position-outcome {
+      font-size: 0.65rem;
+      padding: 0.2rem 0.4rem;
+      border-radius: 2px;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    .position-outcome.yes { background: rgba(78, 205, 196, 0.2); color: var(--signal); }
+    .position-outcome.no { background: rgba(255, 107, 107, 0.2); color: #ff6b6b; }
+    .position-outcome.down { background: rgba(255, 107, 107, 0.2); color: #ff6b6b; }
+    .position-outcome.up { background: rgba(78, 205, 196, 0.2); color: var(--signal); }
+
+    .position-value {
+      color: var(--fg);
+      text-align: right;
+    }
+
+    .position-pnl {
+      text-align: right;
+      min-width: 70px;
+    }
+
+    .position-pnl.positive { color: var(--trade); }
+    .position-pnl.negative { color: #ff6b6b; }
+
+    @media (max-width: 600px) {
+      .position {
+        grid-template-columns: 1fr auto;
+        gap: 0.5rem;
+      }
+      .position-value, .position-pnl {
+        font-size: 0.7rem;
+      }
+      .positions-summary {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -301,6 +414,28 @@
         </div>
       </div>
     </header>
+
+    <!-- Positions Panel -->
+    <div class="positions-panel" id="positions-panel">
+      <div class="positions-header">
+        <span class="positions-title">📊 Live Positions</span>
+        <div class="positions-summary">
+          <div class="summary-item">
+            <span class="summary-label">Value:</span>
+            <span class="summary-value" id="pos-value">—</span>
+          </div>
+          <div class="summary-item">
+            <span class="summary-label">P/L:</span>
+            <span class="summary-value" id="pos-pnl">—</span>
+          </div>
+        </div>
+      </div>
+      <div class="positions-grid" id="positions-grid">
+        <div class="empty-state" style="padding: 1rem;">
+          <p style="font-size: 0.8rem;">loading positions...</p>
+        </div>
+      </div>
+    </div>
 
     <div class="filters">
       <button class="filter-btn active" data-filter="all">All</button>
@@ -442,6 +577,63 @@
 
     loadThoughts();
     connectStream();
+
+    // Positions
+    const posValueEl = document.getElementById('pos-value');
+    const posPnlEl = document.getElementById('pos-pnl');
+    const posGridEl = document.getElementById('positions-grid');
+
+    function formatCurrency(n) {
+      return '$' + Math.abs(n).toFixed(2);
+    }
+
+    function renderPositions(data) {
+      if (!data.positions || data.positions.length === 0) {
+        posGridEl.innerHTML = '<div class="empty-state" style="padding: 1rem;"><p style="font-size: 0.8rem;">no positions</p></div>';
+        return;
+      }
+
+      // Sort by value descending
+      const sorted = [...data.positions].sort((a, b) => (b.value || 0) - (a.value || 0));
+
+      posGridEl.innerHTML = sorted.map(p => {
+        const pnlClass = (p.pnl || 0) >= 0 ? 'positive' : 'negative';
+        const pnlSign = (p.pnl || 0) >= 0 ? '+' : '';
+        const outcomeClass = (p.outcome || '').toLowerCase().replace(/\s+/g, '');
+        
+        return `
+          <div class="position">
+            <div class="position-title" title="${p.title}">${p.title}</div>
+            <span class="position-outcome ${outcomeClass}">${p.outcome}</span>
+            <div class="position-value">${formatCurrency(p.value || 0)}</div>
+            <div class="position-pnl ${pnlClass}">${pnlSign}${(p.pnlPct || 0).toFixed(1)}%</div>
+          </div>
+        `;
+      }).join('');
+
+      // Update summary
+      posValueEl.textContent = formatCurrency(data.summary.totalValue);
+      
+      const pnlClass = data.summary.totalPnl >= 0 ? 'positive' : 'negative';
+      const pnlSign = data.summary.totalPnl >= 0 ? '+' : '';
+      posPnlEl.textContent = `${pnlSign}${formatCurrency(data.summary.totalPnl)}`;
+      posPnlEl.className = 'summary-value ' + pnlClass;
+    }
+
+    async function loadPositions() {
+      try {
+        const res = await fetch('/api/positions');
+        const data = await res.json();
+        renderPositions(data);
+      } catch (e) {
+        console.error('Failed to load positions:', e);
+        posGridEl.innerHTML = '<div class="empty-state" style="padding: 1rem;"><p style="font-size: 0.8rem;">failed to load</p></div>';
+      }
+    }
+
+    // Load positions initially and refresh every 60s
+    loadPositions();
+    setInterval(loadPositions, 60000);
   </script>
 </body>
 </html>
