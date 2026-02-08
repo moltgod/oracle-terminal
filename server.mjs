@@ -6,6 +6,7 @@
  */
 
 import express from 'express';
+import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { getThoughts, getThoughtsSince } from './thoughts.mjs';
@@ -20,41 +21,35 @@ const WALLET = '0xAE5A57dC7370D9774832B61044337E9d7da47eed';
 // serve static files
 app.use(express.static(path.join(__dirname, 'public')));
 
-// API: get live positions from Polymarket
+// API: get positions from local file (manually updated)
 app.get('/api/positions', async (req, res) => {
   try {
-    const response = await fetch(`https://data-api.polymarket.com/positions?user=${WALLET.toLowerCase()}`);
-    const positions = await response.json();
+    const posFile = path.join(__dirname, 'positions.json');
+    const data = JSON.parse(fs.readFileSync(posFile, 'utf8'));
     
-    // Calculate totals
-    let totalValue = 0;
-    let totalPnl = 0;
-    
-    const formatted = positions.map(p => {
-      totalValue += p.currentValue || 0;
-      totalPnl += p.cashPnl || 0;
-      return {
-        title: p.title,
-        outcome: p.outcome,
-        shares: p.size,
-        avgPrice: p.avgPrice,
-        curPrice: p.curPrice,
-        value: p.currentValue,
-        pnl: p.cashPnl,
-        pnlPct: p.percentPnl,
-        endDate: p.endDate,
-        slug: p.slug
-      };
-    });
+    const formatted = data.positions.map(p => ({
+      title: p.market,
+      outcome: p.side,
+      shares: p.shares,
+      avgPrice: p.avg_price,
+      curPrice: p.current_price,
+      value: p.value,
+      pnl: p.pnl,
+      pnlPct: p.pnl_pct,
+      endDate: p.resolves,
+      thesis: p.thesis
+    }));
     
     res.json({ 
       positions: formatted,
       summary: {
-        totalValue,
-        totalPnl,
-        count: positions.length
+        totalValue: data.portfolio.total_value,
+        totalPnl: data.portfolio.pnl,
+        cash: data.portfolio.cash,
+        total: data.portfolio.total,
+        count: data.positions.length
       },
-      updated: new Date().toISOString()
+      updated: data.updated
     });
   } catch (e) {
     res.status(500).json({ error: e.message });
