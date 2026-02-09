@@ -7,6 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <style>
     :root {
       --bg: #0a0a0b;
@@ -217,6 +218,81 @@
       font-size: 0.85rem;
       line-height: 1.7;
       color: var(--fg);
+    }
+
+    /* Markdown styling */
+    .thought-content h1 {
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin: 1rem 0 0.5rem 0;
+      color: var(--accent);
+    }
+
+    .thought-content h2 {
+      font-size: 0.95rem;
+      font-weight: 500;
+      margin: 0.8rem 0 0.4rem 0;
+      color: var(--fg);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.2rem;
+    }
+
+    .thought-content h3 {
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin: 0.6rem 0 0.3rem 0;
+      color: var(--fg-dim);
+    }
+
+    .thought-content p {
+      margin: 0.5rem 0;
+    }
+
+    .thought-content ul, .thought-content ol {
+      margin: 0.5rem 0;
+      padding-left: 1.5rem;
+    }
+
+    .thought-content li {
+      margin: 0.25rem 0;
+    }
+
+    .thought-content strong {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .thought-content em {
+      font-style: italic;
+      color: var(--fg-dim);
+    }
+
+    .thought-content code {
+      background: var(--bg);
+      padding: 0.1rem 0.3rem;
+      border-radius: 2px;
+      font-size: 0.8rem;
+    }
+
+    .thought-content pre {
+      background: var(--bg);
+      padding: 0.75rem;
+      border-radius: 4px;
+      overflow-x: auto;
+      margin: 0.5rem 0;
+    }
+
+    .thought-content pre code {
+      background: none;
+      padding: 0;
+    }
+
+    .thought-content blockquote {
+      border-left: 2px solid var(--accent);
+      padding-left: 0.75rem;
+      margin: 0.5rem 0;
+      color: var(--fg-dim);
+      font-style: italic;
     }
 
     .thought-data {
@@ -498,7 +574,7 @@
             <span class="thought-category">${t.category}</span>
             <span class="thought-time">${formatTime(t.timestamp)}</span>
           </div>
-          <div class="thought-content">${escapeHtml(t.content)}</div>
+          <div class="thought-content">${marked.parse(t.content)}</div>
           ${hasData ? `<pre class="thought-data">${JSON.stringify(t.metadata, null, 2)}</pre>` : ''}
         </div>
       `;
