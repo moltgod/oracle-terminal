@@ -10,6 +10,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { getThoughts, getThoughtsSince } from './thoughts.mjs';
+import { getMissionStatus, logAction, setTotalSpend, logDailySpend, estimateCost } from './mission.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
@@ -68,6 +69,54 @@ app.get('/api/thoughts', (req, res) => {
 app.get('/api/thoughts/since/:timestamp', (req, res) => {
   const thoughts = getThoughtsSince(req.params.timestamp);
   res.json({ thoughts });
+});
+
+// ═══════════════════════════════════════════════════════════════════
+// MISSION CONTROL — API usage tracking
+// ═══════════════════════════════════════════════════════════════════
+
+// API: get mission status
+app.get('/api/mission', (req, res) => {
+  try {
+    const status = getMissionStatus();
+    res.json(status);
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+// API: log an action
+app.post('/api/mission/log', express.json(), (req, res) => {
+  try {
+    const { action, model, tokensIn, tokensOut, cost } = req.body;
+    const costEstimate = cost || estimateCost(model, tokensIn, tokensOut);
+    const data = logAction(action, model, tokensIn || 0, tokensOut || 0, costEstimate);
+    res.json({ success: true, total: data.totalSpend });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+// API: set total spend (for calibration)
+app.post('/api/mission/set-spend', express.json(), (req, res) => {
+  try {
+    const { amount } = req.body;
+    const data = setTotalSpend(parseFloat(amount));
+    res.json({ success: true, total: data.totalSpend });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+// API: log daily spend
+app.post('/api/mission/daily', express.json(), (req, res) => {
+  try {
+    const { date, spend } = req.body;
+    const data = logDailySpend(date, parseFloat(spend));
+    res.json({ success: true, dailyLogs: data.dailyLogs });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
 });
 
 // API: server-sent events for real-time updates

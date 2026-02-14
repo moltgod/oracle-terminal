@@ -1,0 +1,11 @@
+{
+  "created": "2026-02-01T00:00:00.000Z",
+  "totalSpend": 600,
+  "totalTokensIn": 0,
+  "totalTokensOut": 0,
+  "dailyLogs": {
+    "2026-02-13": { "spend": 0, "tokensIn": 0, "tokensOut": 0, "actions": 0 }
+  },
+  "actions": [],
+  "lastUpdated": "2026-02-13T18:58:00.000Z"
+}
