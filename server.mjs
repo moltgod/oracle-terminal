@@ -143,6 +143,51 @@ app.get('/api/stream', (req, res) => {
   });
 });
 
+// ═══════════════════════════════════════════════════════════════════
+// PANIC BUTTON — Emergency model switch (runs locally via script)
+// ═══════════════════════════════════════════════════════════════════
+
+import { exec } from 'child_process';
+
+const MODEL_ALIASES = {
+  'opus': 'anthropic/claude-opus-4-5',
+  'sonnet': 'anthropic/claude-sonnet-4-20250514',
+  'haiku': 'anthropic/claude-haiku',
+  'hermes': 'nous/Hermes-4.3-36B',
+};
+
+// API: trigger model switch (for local use only)
+app.post('/api/panic/model', express.json(), (req, res) => {
+  const { model, secret } = req.body;
+  
+  // Simple secret check (not production-grade, but prevents random hits)
+  if (secret !== 'molt2026') {
+    return res.status(403).json({ error: 'invalid secret' });
+  }
+  
+  const modelId = MODEL_ALIASES[model] || model;
+  const scriptPath = '/Users/slatt/clawdbot/scripts/model-switch.sh';
+  
+  exec(`${scriptPath} "${modelId}"`, (error, stdout, stderr) => {
+    if (error) {
+      return res.status(500).json({ error: error.message, stderr });
+    }
+    res.json({ success: true, output: stdout, model: modelId });
+  });
+});
+
+// API: get current model (reads from config)
+app.get('/api/panic/status', (req, res) => {
+  try {
+    const configPath = '/Users/slatt/.openclaw/openclaw.json';
+    const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+    const currentModel = config?.agents?.defaults?.model?.primary || 'unknown';
+    res.json({ model: currentModel, aliases: MODEL_ALIASES });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`
   ╔═══════════════════════════════════════════╗

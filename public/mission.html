@@ -249,6 +249,36 @@
       margin-top: 3rem;
     }
 
+    .panic-btn {
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .panic-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    .panic-btn.opus {
+      background: #5a3e7a;
+      color: white;
+    }
+
+    .panic-btn.sonnet {
+      background: #3e5a7a;
+      color: white;
+    }
+
+    .panic-btn.hermes {
+      background: #3e7a5a;
+      color: white;
+    }
+
     @keyframes pulse {
       0%, 100% { opacity: 1; }
       50% { opacity: 0.5; }
@@ -303,6 +333,22 @@
     <div class="warning-banner" id="warning" style="display: none;">
       ⚠️ <strong>High burn rate detected.</strong> Consider switching to cheaper models for routine tasks.
     </div>
+
+    <section>
+      <h2>🚨 Panic Button — Model Switch</h2>
+      <div class="tips" style="border-color: var(--red);">
+        <p style="margin-bottom: 1rem; font-size: 0.85rem;">If the AI gets stuck on a dumb model, use this to switch back:</p>
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+          <button onclick="switchModel('opus')" class="panic-btn opus">Opus (Smart)</button>
+          <button onclick="switchModel('sonnet')" class="panic-btn sonnet">Sonnet (Balanced)</button>
+          <button onclick="switchModel('hermes')" class="panic-btn hermes">Hermes (Cheap)</button>
+        </div>
+        <p id="panic-status" style="margin-top: 1rem; font-size: 0.8rem; color: var(--fg-dim);"></p>
+        <p style="margin-top: 0.5rem; font-size: 0.75rem; color: var(--fg-dim);">
+          Or run locally: <code>~/clawdbot/scripts/model-switch.sh opus</code>
+        </p>
+      </div>
+    </section>
 
     <section>
       <h2>Cost Optimization Tips</h2>
@@ -438,6 +484,42 @@
     // Load on start and refresh every 30s
     loadMission();
     setInterval(loadMission, 30000);
+    
+    // Panic button - model switch
+    async function switchModel(model) {
+      const statusEl = document.getElementById('panic-status');
+      statusEl.textContent = `Switching to ${model}...`;
+      statusEl.style.color = 'var(--yellow)';
+      
+      try {
+        const res = await fetch('/api/panic/model', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ model, secret: 'molt2026' })
+        });
+        const data = await res.json();
+        
+        if (data.success) {
+          statusEl.textContent = `✓ Switched to ${data.model}. Gateway restarting...`;
+          statusEl.style.color = 'var(--green)';
+        } else {
+          statusEl.textContent = `✗ Failed: ${data.error}`;
+          statusEl.style.color = 'var(--red)';
+        }
+      } catch (e) {
+        statusEl.textContent = `✗ Error: ${e.message}. Try the shell script instead.`;
+        statusEl.style.color = 'var(--red)';
+      }
+    }
+    
+    // Check current model on load
+    fetch('/api/panic/status')
+      .then(r => r.json())
+      .then(data => {
+        const statusEl = document.getElementById('panic-status');
+        statusEl.textContent = `Current model: ${data.model}`;
+      })
+      .catch(() => {});
   </script>
 </body>
 </html>
