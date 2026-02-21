@@ -28,28 +28,11 @@ app.get('/api/positions', async (req, res) => {
     const posFile = path.join(__dirname, 'positions.json');
     const data = JSON.parse(fs.readFileSync(posFile, 'utf8'));
     
-    const formatted = data.positions.map(p => ({
-      title: p.market,
-      outcome: p.side,
-      shares: p.shares,
-      avgPrice: p.avg_price,
-      curPrice: p.current_price,
-      value: p.value,
-      pnl: p.pnl,
-      pnlPct: p.pnl_pct,
-      endDate: p.resolves,
-      thesis: p.thesis
-    }));
-    
+    // Return positions with original field names for new frontend
     res.json({ 
-      positions: formatted,
-      summary: {
-        totalValue: data.portfolio.total_value,
-        totalPnl: data.portfolio.pnl,
-        cash: data.portfolio.cash,
-        total: data.portfolio.total,
-        count: data.positions.length
-      },
+      positions: data.positions,
+      portfolio: data.portfolio,
+      track_record: data.track_record,
       updated: data.updated
     });
   } catch (e) {
