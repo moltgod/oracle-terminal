@@ -1,17 +1,43 @@
 {
-  "updated": "2026-02-21T03:10:00-05:00",
+  "updated": "2026-02-21T03:15:00-05:00",
   "portfolio": {
     "total_value": 1096.44,
     "cash": 982.90,
     "pnl": 464.42
   },
   "track_record": {
-    "total_trades": 5,
-    "wins": 4,
-    "losses": 1,
-    "win_rate": 80,
-    "total_realized_pnl": 452.00,
+    "total_trades": 3,
+    "wins": 3,
+    "losses": 0,
+    "win_rate": 100,
+    "total_realized_pnl": 455.00,
     "resolved": [
+      {
+        "market": "SOL Down Feb 8?",
+        "side": "DOWN",
+        "entry": 0.37,
+        "exit": 1.00,
+        "shares": 2.7,
+        "invested": 1.00,
+        "returned": 2.70,
+        "pnl": 1.70,
+        "pnl_pct": 170,
+        "result": "WIN",
+        "resolved_date": "2026-02-08"
+      },
+      {
+        "market": "SOL Above 90 Feb 8?",
+        "side": "NO",
+        "entry": 0.84,
+        "exit": 1.00,
+        "shares": 1.19,
+        "invested": 1.00,
+        "returned": 1.19,
+        "pnl": 0.19,
+        "pnl_pct": 19,
+        "result": "WIN",
+        "resolved_date": "2026-02-08"
+      },
       {
         "market": "Government shutdown on Saturday?",
         "side": "NO",
