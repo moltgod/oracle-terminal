@@ -301,6 +301,102 @@
     .flow-block.moderate-outflow .flow-delta { color: var(--outflow); }
     .flow-block.neutral .flow-delta { color: var(--fg-dim); }
 
+    /* Explainer */
+    .explainer {
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .explainer-title {
+      font-size: 0.7rem;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+
+    .explainer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+    }
+
+    .explainer-step {
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+    }
+
+    .step-num {
+      width: 24px;
+      height: 24px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      color: var(--fg-dim);
+      flex-shrink: 0;
+    }
+
+    .step-text {
+      font-size: 0.75rem;
+      color: var(--fg-dim);
+      line-height: 1.5;
+    }
+
+    .step-text strong {
+      color: var(--fg);
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    .signal-hint {
+      display: inline-block;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.65rem;
+      margin-right: 0.5rem;
+      margin-top: 0.25rem;
+    }
+
+    .signal-hint.inflow {
+      background: rgba(78, 205, 196, 0.15);
+      color: var(--inflow);
+    }
+
+    .signal-hint.outflow {
+      background: rgba(255, 107, 107, 0.15);
+      color: var(--outflow);
+    }
+
+    /* Section headers */
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 0.75rem;
+      padding: 0 0.25rem;
+    }
+
+    .section-title {
+      font-size: 0.7rem;
+      color: var(--fg-dim);
+      letter-spacing: 0.1em;
+      font-weight: 500;
+    }
+
+    .section-subtitle {
+      font-size: 0.65rem;
+      color: var(--fg-dim);
+      font-style: italic;
+    }
+
     .empty-state {
       text-align: center;
       padding: 3rem;
@@ -352,7 +448,40 @@
 
     <div class="updated" id="updated">loading...</div>
 
+    <!-- Explainer -->
+    <div class="explainer">
+      <div class="explainer-title">📡 HOW THIS WORKS</div>
+      <div class="explainer-content">
+        <div class="explainer-step">
+          <div class="step-num">1</div>
+          <div class="step-text">
+            <strong>Track the flow.</strong> Paradigm aggregates $4B+ in prediction market volume. 
+            When money floods into a category, it shows up here first.
+          </div>
+        </div>
+        <div class="explainer-step">
+          <div class="step-num">2</div>
+          <div class="step-text">
+            <strong>Find the lag.</strong> Category flow moves before individual market prices adjust. 
+            Markets near 50¢ in hot categories = price hasn't caught up yet.
+          </div>
+        </div>
+        <div class="explainer-step">
+          <div class="step-num">3</div>
+          <div class="step-text">
+            <strong>Trade the gap.</strong> 
+            <span class="signal-hint inflow">🟢 INFLOW → BUY YES</span> 
+            <span class="signal-hint outflow">🔴 OUTFLOW → BUY NO</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Category Flow Overview -->
+    <div class="section-header">
+      <span class="section-title">WEEKLY CAPITAL FLOW</span>
+      <span class="section-subtitle">where money moved in the last 7 days</span>
+    </div>
     <div class="flow-viz" id="flow-viz">
       <div class="empty-state">
         <div class="icon">📊</div>
@@ -361,6 +490,10 @@
     </div>
 
     <!-- Laggard Markets by Category -->
+    <div class="section-header">
+      <span class="section-title">LAGGING MARKETS</span>
+      <span class="section-subtitle">prices that haven't caught up to the flow yet</span>
+    </div>
     <div class="signal-map" id="signal-map">
       <div class="empty-state">
         <div class="icon">🎯</div>
