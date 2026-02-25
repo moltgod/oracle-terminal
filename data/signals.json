@@ -1,0 +1,90 @@
+{
+  "timestamp": "2026-02-25T04:09:16.940Z",
+  "signals": [
+    {
+      "type": "INFLOW",
+      "category": "UNKNOWN",
+      "delta": "+3097.2%",
+      "voiRatio": "31.97",
+      "strength": "STRONG",
+      "action": "LOOK FOR LAGGING MARKETS",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "type": "HOT_MONEY",
+      "category": "UNKNOWN",
+      "delta": "+3097.2%",
+      "voiRatio": "31.97",
+      "strength": "VERY_HOT",
+      "action": "MOMENTUM PLAY",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "type": "OUTFLOW",
+      "category": "Crypto",
+      "delta": "-48.5%",
+      "voiRatio": "0.51",
+      "strength": "STRONG",
+      "action": "CONSIDER EXITS",
+      "tags": [
+        "crypto",
+        "bitcoin",
+        "ethereum",
+        "defi"
+      ]
+    },
+    {
+      "type": "INFLOW",
+      "category": "Culture",
+      "delta": "+36.2%",
+      "voiRatio": "1.36",
+      "strength": "STRONG",
+      "action": "LOOK FOR LAGGING MARKETS",
+      "tags": [
+        "culture",
+        "entertainment",
+        "celebrities"
+      ]
+    },
+    {
+      "type": "INFLOW",
+      "category": "Early Polymarket Trades",
+      "delta": "+84.4%",
+      "voiRatio": "1.84",
+      "strength": "STRONG",
+      "action": "LOOK FOR LAGGING MARKETS",
+      "tags": [
+        "early polymarket trades"
+      ]
+    },
+    {
+      "type": "OUTFLOW",
+      "category": "Economics",
+      "delta": "-17.3%",
+      "voiRatio": "0.83",
+      "strength": "MODERATE",
+      "action": "CONSIDER EXITS",
+      "tags": [
+        "economy",
+        "fed",
+        "inflation",
+        "markets"
+      ]
+    },
+    {
+      "type": "OUTFLOW",
+      "category": "Financials",
+      "delta": "-26.1%",
+      "voiRatio": "0.74",
+      "strength": "MODERATE",
+      "action": "CONSIDER EXITS",
+      "tags": [
+        "financials"
+      ]
+    }
+  ]
+}

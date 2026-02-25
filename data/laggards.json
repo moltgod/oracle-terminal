@@ -1,0 +1,206 @@
+{
+  "timestamp": "2026-02-25T04:17:26.590Z",
+  "paradigmTimestamp": "2026-02-25T04:09:16.935Z",
+  "laggards": [
+    {
+      "category": "Crypto",
+      "categoryDelta": -48.54001635460051,
+      "question": "Will Bitcoin reach $68,000 February 23-March 1?",
+      "price": 0.505,
+      "signal": "BUY NO",
+      "slug": "will-bitcoin-reach-68k-february-23-march-1",
+      "volume": 43129.237191,
+      "laggardScore": 48.05461619105451
+    },
+    {
+      "category": "Crypto",
+      "categoryDelta": -48.54001635460051,
+      "question": "Will the price of Ethereum be above $1,900 on February 25?",
+      "price": 0.505,
+      "signal": "BUY NO",
+      "slug": "ethereum-above-1900-on-february-25",
+      "volume": 62132.808449,
+      "laggardScore": 48.05461619105451
+    },
+    {
+      "category": "Crypto",
+      "categoryDelta": -48.54001635460051,
+      "question": "Will the price of Ethereum be above $1,900 on February 26?",
+      "price": 0.505,
+      "signal": "BUY NO",
+      "slug": "ethereum-above-1900-on-february-26",
+      "volume": 50332.763971,
+      "laggardScore": 48.05461619105451
+    },
+    {
+      "category": "Crypto",
+      "categoryDelta": -48.54001635460051,
+      "question": "Will Ethereum reach $2,000 February 23-March 1?",
+      "price": 0.47,
+      "signal": "BUY NO",
+      "slug": "will-ethereum-reach-2000-february-23-march-1",
+      "volume": 35889.691519,
+      "laggardScore": 45.627615373324474
+    },
+    {
+      "category": "Crypto",
+      "categoryDelta": -48.54001635460051,
+      "question": "Will the price of Bitcoin be above $66,000 on February 26?",
+      "price": 0.4,
+      "signal": "BUY NO",
+      "slug": "bitcoin-above-66k-on-february-26",
+      "volume": 102896.126499,
+      "laggardScore": 38.83201308368041
+    },
+    {
+      "category": "Culture",
+      "categoryDelta": 36.22029310390925,
+      "question": "Will \"Sinners\" win 3 or fewer awards at the Oscars?",
+      "price": 0.495,
+      "signal": "BUY YES",
+      "slug": "will-sinners-win-3-or-fewer-awards-at-the-oscars",
+      "volume": 17626.037182,
+      "laggardScore": 35.858090172870156
+    },
+    {
+      "category": "Culture",
+      "categoryDelta": 36.22029310390925,
+      "question": "Will Ryan Gosling attend the Oscars?",
+      "price": 0.51,
+      "signal": "BUY YES",
+      "slug": "will-ryan-gosling-attend-the-oscars",
+      "volume": 5276.580696,
+      "laggardScore": 35.49588724183106
+    },
+    {
+      "category": "Culture",
+      "categoryDelta": 36.22029310390925,
+      "question": "Will Saoirse Ronan attend the Oscars?",
+      "price": 0.435,
+      "signal": "BUY YES",
+      "slug": "will-saoirse-ronan-attend-the-oscars",
+      "volume": 3359.858079,
+      "laggardScore": 31.511655000401046
+    },
+    {
+      "category": "Culture",
+      "categoryDelta": 36.22029310390925,
+      "question": "Will Nicole Kidman attend the Oscars?",
+      "price": 0.435,
+      "signal": "BUY YES",
+      "slug": "will-nicole-kidman-attend-the-oscars",
+      "volume": 2305.328284,
+      "laggardScore": 31.511655000401046
+    },
+    {
+      "category": "Culture",
+      "categoryDelta": 36.22029310390925,
+      "question": "Will Hudson Williams attend the Oscars?",
+      "price": 0.425,
+      "signal": "BUY YES",
+      "slug": "will-hudson-williams-attend-the-oscars",
+      "volume": 1420.451175,
+      "laggardScore": 30.78724913832286
+    },
+    {
+      "category": "Financials",
+      "categoryDelta": -26.056557666146514,
+      "question": "archPump.fun >$3B market cap (FDV) one day after launch?",
+      "price": 0.5,
+      "signal": "BUY NO",
+      "slug": "pumpfun-3b-market-cap-fdv-one-day-after-launch",
+      "volume": 0,
+      "laggardScore": 26.056557666146514
+    },
+    {
+      "category": "Financials",
+      "categoryDelta": -26.056557666146514,
+      "question": "MegaETH market cap (FDV) >$1B one day after launch?",
+      "price": 0.535,
+      "signal": "BUY NO",
+      "slug": "megaeth-market-cap-fdv-1b-one-day-after-launch-gj9e-189-291",
+      "volume": 2010045.473966,
+      "laggardScore": 24.232598629516257
+    },
+    {
+      "category": "Financials",
+      "categoryDelta": -26.056557666146514,
+      "question": "Kraken IPO closing market cap above $20B?",
+      "price": 0.445,
+      "signal": "BUY NO",
+      "slug": "kraken-ipo-closing-market-cap-above-20b",
+      "volume": 7856.04286,
+      "laggardScore": 23.190336322870397
+    },
+    {
+      "category": "Financials",
+      "categoryDelta": -26.056557666146514,
+      "question": "Kraken IPO closing market cap above $16B?",
+      "price": 0.585,
+      "signal": "BUY NO",
+      "slug": "kraken-ipo-closing-market-cap-above-16b",
+      "volume": 13848.297878,
+      "laggardScore": 21.626942862901608
+    },
+    {
+      "category": "Financials",
+      "categoryDelta": -26.056557666146514,
+      "question": "Consensys IPO closing market cap above $2B?",
+      "price": 0.375,
+      "signal": "BUY NO",
+      "slug": "consensys-ipo-closing-market-cap-above-2b",
+      "volume": 26990.278636,
+      "laggardScore": 19.542418249609884
+    },
+    {
+      "category": "Economics",
+      "categoryDelta": -17.34318157020396,
+      "question": "Will Trump nominate Individual T as the next Fed chair?",
+      "price": 0.5,
+      "signal": "BUY NO",
+      "slug": "will-trump-nominate-individual-t-as-the-next-fed-chair",
+      "volume": 0,
+      "laggardScore": 17.34318157020396
+    },
+    {
+      "category": "Economics",
+      "categoryDelta": -17.34318157020396,
+      "question": "Will Trump nominate Individual P as the next Fed chair?",
+      "price": 0.5,
+      "signal": "BUY NO",
+      "slug": "will-trump-nominate-individual-p-as-the-next-fed-chair",
+      "volume": 0,
+      "laggardScore": 17.34318157020396
+    },
+    {
+      "category": "Economics",
+      "categoryDelta": -17.34318157020396,
+      "question": "Will Trump nominate Individual Q as the next Fed chair?",
+      "price": 0.5,
+      "signal": "BUY NO",
+      "slug": "will-trump-nominate-individual-q-as-the-next-fed-chair",
+      "volume": 0,
+      "laggardScore": 17.34318157020396
+    },
+    {
+      "category": "Economics",
+      "categoryDelta": -17.34318157020396,
+      "question": "Will Trump nominate Individual R as the next Fed chair?",
+      "price": 0.5,
+      "signal": "BUY NO",
+      "slug": "will-trump-nominate-individual-r-as-the-next-fed-chair",
+      "volume": 0,
+      "laggardScore": 17.34318157020396
+    },
+    {
+      "category": "Economics",
+      "categoryDelta": -17.34318157020396,
+      "question": "Will Trump nominate Individual S as the next Fed chair?",
+      "price": 0.5,
+      "signal": "BUY NO",
+      "slug": "will-trump-nominate-individual-s-as-the-next-fed-chair",
+      "volume": 0,
+      "laggardScore": 17.34318157020396
+    }
+  ]
+}

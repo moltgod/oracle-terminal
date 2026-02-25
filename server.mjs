@@ -178,7 +178,11 @@ app.get('/api/panic/status', (req, res) => {
 // API: get live signals
 app.get('/api/signals', (req, res) => {
   try {
-    const signalsPath = path.join(process.env.HOME || '/Users/slatt', 'clawdbot/state/signals.json');
+    // Try local data dir first (for deployed version), then clawdbot/state (for local dev)
+    const localPath = path.join(__dirname, 'data', 'signals.json');
+    const devPath = path.join(process.env.HOME || '/Users/slatt', 'clawdbot/state/signals.json');
+    const signalsPath = fs.existsSync(localPath) ? localPath : devPath;
+    
     if (fs.existsSync(signalsPath)) {
       const data = JSON.parse(fs.readFileSync(signalsPath, 'utf8'));
       res.json(data);
@@ -186,7 +190,7 @@ app.get('/api/signals', (req, res) => {
       res.json({ 
         timestamp: new Date().toISOString(),
         signals: [],
-        message: 'No signals data yet. Run paradigm-signal.mjs to generate.'
+        message: 'No signals data yet.'
       });
     }
   } catch (e) {
@@ -197,7 +201,10 @@ app.get('/api/signals', (req, res) => {
 // API: get paradigm delta data
 app.get('/api/paradigm', (req, res) => {
   try {
-    const paradigmPath = path.join(process.env.HOME || '/Users/slatt', 'clawdbot/state/paradigm.json');
+    const localPath = path.join(__dirname, 'data', 'paradigm.json');
+    const devPath = path.join(process.env.HOME || '/Users/slatt', 'clawdbot/state/paradigm.json');
+    const paradigmPath = fs.existsSync(localPath) ? localPath : devPath;
+    
     if (fs.existsSync(paradigmPath)) {
       const data = JSON.parse(fs.readFileSync(paradigmPath, 'utf8'));
       res.json(data);
@@ -205,7 +212,7 @@ app.get('/api/paradigm', (req, res) => {
       res.json({ 
         timestamp: null,
         categories: {},
-        message: 'No paradigm data yet. Run paradigm.mjs delta to generate.'
+        message: 'No paradigm data yet.'
       });
     }
   } catch (e) {
@@ -216,7 +223,10 @@ app.get('/api/paradigm', (req, res) => {
 // API: get laggards (markets trailing category flow)
 app.get('/api/laggards', (req, res) => {
   try {
-    const laggardPath = path.join(process.env.HOME || '/Users/slatt', 'clawdbot/state/laggards.json');
+    const localPath = path.join(__dirname, 'data', 'laggards.json');
+    const devPath = path.join(process.env.HOME || '/Users/slatt', 'clawdbot/state/laggards.json');
+    const laggardPath = fs.existsSync(localPath) ? localPath : devPath;
+    
     if (fs.existsSync(laggardPath)) {
       const data = JSON.parse(fs.readFileSync(laggardPath, 'utf8'));
       res.json(data);
@@ -224,7 +234,7 @@ app.get('/api/laggards', (req, res) => {
       res.json({ 
         timestamp: null,
         laggards: [],
-        message: 'No laggard data yet. Run laggard-finder.mjs to generate.'
+        message: 'No laggard data yet.'
       });
     }
   } catch (e) {
