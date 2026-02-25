@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>god.molt — signal map</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0b;
+      --bg-subtle: #111113;
+      --bg-card: #161618;
+      --fg: #e8e6e3;
+      --fg-dim: #6b6b6b;
+      --accent: #ff6b35;
+      --inflow: #4ecdc4;
+      --outflow: #ff6b6b;
+      --neutral: #6b6b6b;
+      --border: #1a1a1d;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'JetBrains Mono', monospace;
+      background: var(--bg);
+      color: var(--fg);
+      min-height: 100vh;
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 1.5rem;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0 2rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 2rem;
+    }
+
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 400;
+    }
+
+    .logo .molt { color: var(--accent); }
+
+    .tagline {
+      font-size: 0.75rem;
+      color: var(--fg-dim);
+      letter-spacing: 0.1em;
+    }
+
+    nav {
+      display: flex;
+      gap: 1.5rem;
+      font-size: 0.8rem;
+    }
+
+    nav a {
+      color: var(--fg-dim);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    nav a:hover, nav a.active {
+      color: var(--accent);
+    }
+
+    .updated {
+      font-size: 0.7rem;
+      color: var(--fg-dim);
+      text-align: right;
+      margin-bottom: 1rem;
+    }
+
+    /* Treemap-style grid */
+    .signal-map {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .category-block {
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .category-block:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    }
+
+    .category-block.inflow {
+      border-left: 4px solid var(--inflow);
+    }
+
+    .category-block.outflow {
+      border-left: 4px solid var(--outflow);
+    }
+
+    .category-header {
+      padding: 1rem;
+      background: var(--bg-card);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .category-name {
+      font-size: 0.9rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .category-delta {
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    .category-delta.positive { color: var(--inflow); }
+    .category-delta.negative { color: var(--outflow); }
+
+    .signal-badge {
+      font-size: 0.65rem;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    .signal-badge.buy-yes {
+      background: rgba(78, 205, 196, 0.2);
+      color: var(--inflow);
+    }
+
+    .signal-badge.buy-no {
+      background: rgba(255, 107, 107, 0.2);
+      color: var(--outflow);
+    }
+
+    .laggards-list {
+      padding: 0.5rem;
+    }
+
+    .laggard-item {
+      padding: 0.75rem;
+      background: var(--bg);
+      border-radius: 6px;
+      margin-bottom: 0.5rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .laggard-item:hover {
+      background: var(--bg-card);
+    }
+
+    .laggard-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .laggard-question {
+      font-size: 0.8rem;
+      color: var(--fg);
+      margin-bottom: 0.5rem;
+      line-height: 1.4;
+    }
+
+    .laggard-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.7rem;
+    }
+
+    .laggard-price {
+      color: var(--fg);
+      font-weight: 500;
+    }
+
+    .laggard-volume {
+      color: var(--fg-dim);
+    }
+
+    .laggard-score {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .score-bar {
+      width: 40px;
+      height: 4px;
+      background: var(--border);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .score-fill {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+
+    /* Flow visualization */
+    .flow-viz {
+      display: flex;
+      gap: 0.5rem;
+      padding: 1.5rem;
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 2rem;
+      overflow-x: auto;
+    }
+
+    .flow-block {
+      flex: 1;
+      min-width: 80px;
+      padding: 1rem;
+      border-radius: 6px;
+      text-align: center;
+      transition: transform 0.2s;
+    }
+
+    .flow-block:hover {
+      transform: scale(1.05);
+    }
+
+    .flow-block.strong-inflow {
+      background: linear-gradient(135deg, rgba(78, 205, 196, 0.3), rgba(78, 205, 196, 0.1));
+      border: 1px solid var(--inflow);
+    }
+
+    .flow-block.moderate-inflow {
+      background: linear-gradient(135deg, rgba(78, 205, 196, 0.15), rgba(78, 205, 196, 0.05));
+      border: 1px solid rgba(78, 205, 196, 0.5);
+    }
+
+    .flow-block.neutral {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+    }
+
+    .flow-block.moderate-outflow {
+      background: linear-gradient(135deg, rgba(255, 107, 107, 0.15), rgba(255, 107, 107, 0.05));
+      border: 1px solid rgba(255, 107, 107, 0.5);
+    }
+
+    .flow-block.strong-outflow {
+      background: linear-gradient(135deg, rgba(255, 107, 107, 0.3), rgba(255, 107, 107, 0.1));
+      border: 1px solid var(--outflow);
+    }
+
+    .flow-name {
+      font-size: 0.65rem;
+      color: var(--fg-dim);
+      margin-bottom: 0.25rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .flow-delta {
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    .flow-block.strong-inflow .flow-delta,
+    .flow-block.moderate-inflow .flow-delta { color: var(--inflow); }
+    .flow-block.strong-outflow .flow-delta,
+    .flow-block.moderate-outflow .flow-delta { color: var(--outflow); }
+    .flow-block.neutral .flow-delta { color: var(--fg-dim); }
+
+    .empty-state {
+      text-align: center;
+      padding: 3rem;
+      color: var(--fg-dim);
+    }
+
+    .empty-state .icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--fg-dim);
+      font-size: 0.7rem;
+      border-top: 1px solid var(--border);
+      margin-top: 2rem;
+    }
+
+    @media (max-width: 768px) {
+      .signal-map {
+        grid-template-columns: 1fr;
+      }
+      
+      .flow-viz {
+        flex-wrap: wrap;
+      }
+      
+      .flow-block {
+        min-width: calc(50% - 0.5rem);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div>
+        <h1 class="logo">god.<span class="molt">molt</span></h1>
+        <p class="tagline">SIGNAL MAP — WHERE MONEY FLOWS</p>
+      </div>
+      <nav>
+        <a href="/">oracle</a>
+        <a href="/signals.html" class="active">signals</a>
+        <a href="/skill.html">skills</a>
+      </nav>
+    </header>
+
+    <div class="updated" id="updated">loading...</div>
+
+    <!-- Category Flow Overview -->
+    <div class="flow-viz" id="flow-viz">
+      <div class="empty-state">
+        <div class="icon">📊</div>
+        <p>loading flow data...</p>
+      </div>
+    </div>
+
+    <!-- Laggard Markets by Category -->
+    <div class="signal-map" id="signal-map">
+      <div class="empty-state">
+        <div class="icon">🎯</div>
+        <p>scanning for laggards...</p>
+      </div>
+    </div>
+
+    <footer>
+      🦞 paradigm × polymarket — category flow leads, price follows
+    </footer>
+  </div>
+
+  <script>
+    const flowVizEl = document.getElementById('flow-viz');
+    const signalMapEl = document.getElementById('signal-map');
+    const updatedEl = document.getElementById('updated');
+
+    function getFlowClass(delta) {
+      if (delta > 25) return 'strong-inflow';
+      if (delta > 10) return 'moderate-inflow';
+      if (delta < -25) return 'strong-outflow';
+      if (delta < -10) return 'moderate-outflow';
+      return 'neutral';
+    }
+
+    async function loadData() {
+      try {
+        const [paradigmRes, laggardsRes] = await Promise.all([
+          fetch('/api/paradigm'),
+          fetch('/api/laggards')
+        ]);
+        
+        const paradigm = await paradigmRes.json();
+        const laggards = await laggardsRes.json();
+        
+        renderFlowViz(paradigm);
+        renderSignalMap(paradigm, laggards);
+        
+        if (laggards.timestamp) {
+          updatedEl.textContent = `Updated: ${new Date(laggards.timestamp).toLocaleString()}`;
+        }
+      } catch (e) {
+        console.error('Failed to load data:', e);
+        flowVizEl.innerHTML = '<div class="empty-state"><p>failed to load</p></div>';
+      }
+    }
+
+    function renderFlowViz(paradigm) {
+      if (!paradigm.categories) {
+        flowVizEl.innerHTML = '<div class="empty-state"><p>no flow data</p></div>';
+        return;
+      }
+
+      const sorted = Object.entries(paradigm.categories)
+        .filter(([name]) => !['UNKNOWN', 'Early Polymarket Trades'].includes(name))
+        .sort((a, b) => b[1].weekOverWeekDelta - a[1].weekOverWeekDelta);
+
+      flowVizEl.innerHTML = sorted.map(([name, data]) => {
+        const delta = data.weekOverWeekDelta || 0;
+        const flowClass = getFlowClass(delta);
+        const sign = delta > 0 ? '+' : '';
+        return `
+          <div class="flow-block ${flowClass}">
+            <div class="flow-name">${name}</div>
+            <div class="flow-delta">${sign}${delta.toFixed(0)}%</div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderSignalMap(paradigm, laggardData) {
+      if (!laggardData.laggards || laggardData.laggards.length === 0) {
+        signalMapEl.innerHTML = `
+          <div class="empty-state">
+            <div class="icon">⚖️</div>
+            <p>no laggards found — markets in equilibrium</p>
+          </div>
+        `;
+        return;
+      }
+
+      // Group laggards by category
+      const byCategory = {};
+      for (const lag of laggardData.laggards) {
+        if (!byCategory[lag.category]) {
+          byCategory[lag.category] = {
+            delta: lag.categoryDelta,
+            laggards: []
+          };
+        }
+        byCategory[lag.category].laggards.push(lag);
+      }
+
+      // Sort categories by absolute delta
+      const sortedCategories = Object.entries(byCategory)
+        .sort((a, b) => Math.abs(b[1].delta) - Math.abs(a[1].delta));
+
+      signalMapEl.innerHTML = sortedCategories.map(([category, data]) => {
+        const isInflow = data.delta > 0;
+        const signal = isInflow ? 'BUY YES' : 'BUY NO';
+        const signalClass = isInflow ? 'buy-yes' : 'buy-no';
+        const blockClass = isInflow ? 'inflow' : 'outflow';
+        const deltaClass = isInflow ? 'positive' : 'negative';
+        const sign = data.delta > 0 ? '+' : '';
+
+        const maxScore = Math.max(...data.laggards.map(l => l.laggardScore || 0));
+
+        return `
+          <div class="category-block ${blockClass}">
+            <div class="category-header">
+              <div class="category-name">
+                ${isInflow ? '🟢' : '🔴'} ${category}
+              </div>
+              <div>
+                <span class="category-delta ${deltaClass}">${sign}${data.delta.toFixed(0)}%</span>
+                <span class="signal-badge ${signalClass}">${signal}</span>
+              </div>
+            </div>
+            <div class="laggards-list">
+              ${data.laggards.slice(0, 5).map(lag => {
+                const scorePercent = maxScore > 0 ? ((lag.laggardScore || 0) / maxScore * 100) : 50;
+                const volStr = lag.volume > 1000000 
+                  ? '$' + (lag.volume / 1000000).toFixed(1) + 'M'
+                  : lag.volume > 1000 
+                    ? '$' + (lag.volume / 1000).toFixed(0) + 'K' 
+                    : '';
+                return `
+                  <a href="https://polymarket.com/event/${lag.slug}" target="_blank" 
+                     class="laggard-item" style="text-decoration: none;">
+                    <div class="laggard-question">${lag.question || 'Unknown'}</div>
+                    <div class="laggard-meta">
+                      <span class="laggard-price">YES ${(lag.price * 100).toFixed(0)}¢</span>
+                      <span class="laggard-volume">${volStr}</span>
+                      <div class="laggard-score">
+                        <div class="score-bar">
+                          <div class="score-fill" style="width: ${scorePercent}%"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </a>
+                `;
+              }).join('')}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // Load initially and refresh every 5 minutes
+    loadData();
+    setInterval(loadData, 300000);
+  </script>
+</body>
+</html>

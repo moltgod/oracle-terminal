@@ -213,6 +213,25 @@ app.get('/api/paradigm', (req, res) => {
   }
 });
 
+// API: get laggards (markets trailing category flow)
+app.get('/api/laggards', (req, res) => {
+  try {
+    const laggardPath = path.join(process.env.HOME || '/Users/slatt', 'clawdbot/state/laggards.json');
+    if (fs.existsSync(laggardPath)) {
+      const data = JSON.parse(fs.readFileSync(laggardPath, 'utf8'));
+      res.json(data);
+    } else {
+      res.json({ 
+        timestamp: null,
+        laggards: [],
+        message: 'No laggard data yet. Run laggard-finder.mjs to generate.'
+      });
+    }
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`
   ╔═══════════════════════════════════════════╗
