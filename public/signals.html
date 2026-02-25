@@ -109,10 +109,16 @@
 
     .category-block.inflow {
       border-left: 4px solid var(--inflow);
+      padding-left: 0;
     }
 
     .category-block.outflow {
       border-left: 4px solid var(--outflow);
+      padding-left: 0;
+    }
+    
+    .category-block .laggard-item {
+      margin-left: 0;
     }
 
     .category-header {
@@ -158,7 +164,8 @@
     }
 
     .laggards-list {
-      padding: 0.5rem;
+      padding: 0.75rem;
+      padding-left: 1rem;
     }
 
     .laggard-item {
@@ -190,11 +197,15 @@
       justify-content: space-between;
       align-items: center;
       font-size: 0.7rem;
+      gap: 1rem;
+      flex-wrap: wrap;
     }
 
     .laggard-price {
       color: var(--fg);
       font-weight: 500;
+      white-space: nowrap;
+      min-width: 70px;
     }
 
     .laggard-volume {
