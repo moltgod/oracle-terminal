@@ -171,6 +171,48 @@ app.get('/api/panic/status', (req, res) => {
   }
 });
 
+// ═══════════════════════════════════════════════════════════════════
+// SIGNALS — Paradigm × Polymarket divergence tracker
+// ═══════════════════════════════════════════════════════════════════
+
+// API: get live signals
+app.get('/api/signals', (req, res) => {
+  try {
+    const signalsPath = path.join(process.env.HOME || '/Users/slatt', 'clawdbot/state/signals.json');
+    if (fs.existsSync(signalsPath)) {
+      const data = JSON.parse(fs.readFileSync(signalsPath, 'utf8'));
+      res.json(data);
+    } else {
+      res.json({ 
+        timestamp: new Date().toISOString(),
+        signals: [],
+        message: 'No signals data yet. Run paradigm-signal.mjs to generate.'
+      });
+    }
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+// API: get paradigm delta data
+app.get('/api/paradigm', (req, res) => {
+  try {
+    const paradigmPath = path.join(process.env.HOME || '/Users/slatt', 'clawdbot/state/paradigm.json');
+    if (fs.existsSync(paradigmPath)) {
+      const data = JSON.parse(fs.readFileSync(paradigmPath, 'utf8'));
+      res.json(data);
+    } else {
+      res.json({ 
+        timestamp: null,
+        categories: {},
+        message: 'No paradigm data yet. Run paradigm.mjs delta to generate.'
+      });
+    }
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`
   ╔═══════════════════════════════════════════╗
