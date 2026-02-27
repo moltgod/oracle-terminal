@@ -620,9 +620,10 @@
                   : lag.volume > 1000 
                     ? '$' + (lag.volume / 1000).toFixed(0) + 'K' 
                     : '';
-                // Use search URL since direct market URLs need event context
-                const searchQuery = encodeURIComponent(lag.question || '');
-                const marketUrl = 'https://polymarket.com/search?query=' + searchQuery;
+                // Use direct URL if eventSlug available, else search
+                const marketUrl = lag.eventSlug && lag.slug
+                  ? 'https://polymarket.com/event/' + lag.eventSlug + '/' + lag.slug
+                  : 'https://polymarket.com/search?query=' + encodeURIComponent(lag.question || '');
                 return `
                   <a href="${marketUrl}" target="_blank" 
                      class="laggard-item" style="text-decoration: none;">
