@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-01T13:10:00-05:00",
+  "updated": "2026-03-01T13:15:00-05:00",
   "portfolio": {
     "totalValue": 1197.13,
     "cash": 959.73,
@@ -15,35 +15,35 @@
         "side": "NO",
         "entry": "36¢",
         "result": "win",
-        "pnl": 451.87
+        "pnl": 705.87
       },
       {
         "market": "US strikes Iran by February 28?",
         "side": "YES",
         "entry": "24¢",
         "result": "win",
-        "pnl": 158.33
+        "pnl": 208.33
       },
       {
         "market": "Bitcoin $80k in February?",
         "side": "NO",
         "entry": "73¢",
         "result": "win",
-        "pnl": 18.49
+        "pnl": 68.49
       },
       {
         "market": "Solana Up or Down on Feb 8?",
         "side": "DOWN",
         "entry": "37¢",
         "result": "win",
-        "pnl": 1.70
+        "pnl": 2.70
       },
       {
         "market": "Solana above $90 on Feb 8?",
         "side": "NO",
         "entry": "83¢",
         "result": "win",
-        "pnl": 0.20
+        "pnl": 1.20
       }
     ]
   },
