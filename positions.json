@@ -1,9 +1,9 @@
 {
-  "updated": "2026-03-01T03:45:00-05:00",
+  "updated": "2026-03-01T03:50:00-05:00",
   "portfolio": {
-    "totalValue": 1284.63,
-    "cash": 891.00,
-    "allTimePnL": 631.81
+    "totalValue": 1347.39,
+    "cash": 991.00,
+    "allTimePnL": 633.64
   },
   "track_record": {
     "total_trades": 5,
@@ -17,11 +17,7 @@
         "side": "DOWN",
         "entry": 0.37,
         "exit": 1.00,
-        "shares": 2.7,
-        "invested": 1.00,
-        "returned": 2.70,
         "pnl": 1.70,
-        "pnlPct": 170,
         "result": "win",
         "resolvedDate": "2026-02-08"
       },
@@ -30,11 +26,7 @@
         "side": "NO",
         "entry": 0.84,
         "exit": 1.00,
-        "shares": 1.19,
-        "invested": 1.00,
-        "returned": 1.19,
         "pnl": 0.19,
-        "pnlPct": 19,
         "result": "win",
         "resolvedDate": "2026-02-08"
       },
@@ -43,11 +35,7 @@
         "side": "NO",
         "entry": 0.36,
         "exit": 1.00,
-        "shares": 705.9,
-        "invested": 254.00,
-        "returned": 705.90,
         "pnl": 451.90,
-        "pnlPct": 178,
         "result": "win",
         "resolvedDate": "2026-02-15"
       },
@@ -56,11 +44,7 @@
         "side": "YES",
         "entry": 0.24,
         "exit": 1.00,
-        "shares": 208.3,
-        "invested": 49.99,
-        "returned": 208.33,
         "pnl": 158.34,
-        "pnlPct": 316,
         "result": "win",
         "resolvedDate": "2026-02-28"
       },
@@ -69,11 +53,7 @@
         "side": "NO",
         "entry": 0.73,
         "exit": 1.00,
-        "shares": 68.5,
-        "invested": 49.99,
-        "returned": 68.50,
-        "pnl": 18.51,
-        "pnlPct": 37,
+        "pnl": 18.49,
         "result": "win",
         "resolvedDate": "2026-02-28"
       }
@@ -81,15 +61,15 @@
   },
   "positions": [
     {
-      "market": "Trump meets Putin by March 31?",
+      "market": "Will Trump meet with Putin by March 31, 2026?",
       "side": "YES",
       "shares": 3303,
       "avgPrice": 0.091,
-      "currentPrice": 0.06,
-      "value": 198.18,
+      "currentPrice": 0.085,
+      "value": 280.76,
       "cost": 300.57,
-      "pnl": -102.39,
-      "pnlPercent": -34,
+      "pnl": -19.24,
+      "pnlPercent": -6.41,
       "resolves": "2026-03-31",
       "status": "LOSING"
     },
@@ -97,12 +77,12 @@
       "market": "Will Claude 5 be released by March 31, 2026?",
       "side": "NO",
       "shares": 2.7,
-      "avgPrice": 0.37,
-      "currentPrice": 0.90,
-      "value": 2.43,
+      "avgPrice": 0.375,
+      "currentPrice": 0.899,
+      "value": 2.40,
       "cost": 1.00,
-      "pnl": 1.43,
-      "pnlPercent": 143,
+      "pnl": 1.40,
+      "pnlPercent": 139.73,
       "resolves": "2026-03-31",
       "status": "WINNING"
     },
@@ -111,11 +91,11 @@
       "side": "NO",
       "shares": 4.9,
       "avgPrice": 0.38,
-      "currentPrice": 0.72,
-      "value": 3.53,
+      "currentPrice": 0.769,
+      "value": 3.74,
       "cost": 1.86,
-      "pnl": 1.67,
-      "pnlPercent": 90,
+      "pnl": 1.89,
+      "pnlPercent": 102.23,
       "resolves": null,
       "status": "WINNING"
     }
