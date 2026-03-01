@@ -5,18 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>god.molt — mission control</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #0a0a0b;
-      --bg-subtle: #111113;
+      --bg: #050506;
+      --bg-subtle: #0a0a0c;
+      --bg-card: #111114;
       --fg: #e8e6e3;
-      --fg-dim: #6b6b6b;
+      --fg-dim: #5a5a5a;
       --accent: #ff6b35;
-      --green: #4ecdc4;
-      --yellow: #ffe66d;
-      --red: #ff6b6b;
+      --green: #00ff88;
+      --green-dim: rgba(0, 255, 136, 0.15);
+      --yellow: #ffd700;
+      --yellow-dim: rgba(255, 215, 0, 0.15);
+      --red: #ff4757;
+      --red-dim: rgba(255, 71, 87, 0.15);
+      --cyan: #4ecdc4;
       --border: #1a1a1d;
     }
 
@@ -30,401 +34,403 @@
       line-height: 1.6;
     }
 
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-image: 
+        linear-gradient(rgba(255,107,53,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,107,53,0.02) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
     .container {
       max-width: 1000px;
       margin: 0 auto;
-      padding: 2rem;
+      padding: 1.5rem;
+      position: relative;
+      z-index: 1;
     }
 
     header {
       text-align: center;
-      padding: 3rem 0 2rem;
+      padding: 3rem 0;
       border-bottom: 1px solid var(--border);
+      margin-bottom: 2rem;
     }
 
-    header h1 {
+    .logo {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 2.5rem;
+      font-size: 3rem;
       font-weight: 400;
-      letter-spacing: 0.1em;
-      margin-bottom: 0.5rem;
     }
 
-    header .subtitle {
+    .logo .molt { color: var(--accent); }
+
+    .tagline {
+      font-size: 0.7rem;
       color: var(--fg-dim);
-      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      margin-top: 0.5rem;
     }
 
     nav {
       display: flex;
       justify-content: center;
       gap: 2rem;
-      padding: 1rem 0;
-      border-bottom: 1px solid var(--border);
-      font-size: 0.85rem;
+      margin-top: 1.5rem;
+      font-size: 0.8rem;
     }
 
     nav a {
       color: var(--fg-dim);
       text-decoration: none;
-      transition: color 0.2s;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      transition: all 0.2s;
     }
 
-    nav a:hover, nav a.active {
-      color: var(--accent);
+    nav a:hover { color: var(--fg); }
+    nav a.active { 
+      color: var(--accent); 
+      background: rgba(255, 107, 53, 0.1);
     }
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.5rem;
-      margin: 2rem 0;
+    /* Cost Hero */
+    .cost-hero {
+      background: linear-gradient(135deg, var(--bg-card) 0%, rgba(255, 215, 0, 0.05) 100%);
+      border: 1px solid var(--yellow);
+      border-radius: 16px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      position: relative;
+      overflow: hidden;
     }
 
-    .stat-card {
-      background: var(--bg-subtle);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 1.5rem;
+    .cost-hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--yellow), var(--accent), var(--red));
+    }
+
+    .cost-label {
+      font-size: 0.65rem;
+      color: var(--yellow);
+      letter-spacing: 0.2em;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .cost-stats {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .cost-stat {
       text-align: center;
     }
 
-    .stat-card .label {
+    .cost-stat .value {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--yellow);
+    }
+
+    .cost-stat .label {
+      font-size: 0.65rem;
       color: var(--fg-dim);
-      font-size: 0.75rem;
-      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-top: 0.25rem;
+    }
+
+    .cost-divider {
+      width: 1px;
+      height: 50px;
+      background: var(--border);
+    }
+
+    /* Status Grid */
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-size: 0.7rem;
+      color: var(--fg-dim);
+      letter-spacing: 0.15em;
+    }
+
+    .status-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .status-card {
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem;
+      text-align: center;
+      transition: all 0.2s;
+    }
+
+    .status-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    }
+
+    .status-card.healthy { border-color: var(--green); }
+    .status-card.warning { border-color: var(--yellow); }
+    .status-card.danger { border-color: var(--red); }
+
+    .status-icon {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .status-label {
+      font-size: 0.7rem;
+      color: var(--fg-dim);
       letter-spacing: 0.1em;
       margin-bottom: 0.5rem;
     }
 
-    .stat-card .value {
-      font-size: 2rem;
-      font-weight: 500;
+    .status-value {
+      font-size: 1.2rem;
+      font-weight: 600;
     }
 
-    .stat-card .value.large {
-      font-size: 2.5rem;
-      color: var(--accent);
-    }
+    .status-card.healthy .status-value { color: var(--green); }
+    .status-card.warning .status-value { color: var(--yellow); }
+    .status-card.danger .status-value { color: var(--red); }
 
-    .stat-card .value.green { color: var(--green); }
-    .stat-card .value.yellow { color: var(--yellow); }
-    .stat-card .value.red { color: var(--red); }
-
-    .stat-card .detail {
-      color: var(--fg-dim);
-      font-size: 0.75rem;
-      margin-top: 0.5rem;
-    }
-
-    section {
-      margin: 3rem 0;
-    }
-
-    section h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.5rem;
-      font-weight: 400;
-      margin-bottom: 1rem;
-      padding-bottom: 0.5rem;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .cost-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.85rem;
-    }
-
-    .cost-table th, .cost-table td {
-      padding: 0.75rem;
-      text-align: left;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .cost-table th {
-      color: var(--fg-dim);
-      font-weight: 400;
-      text-transform: uppercase;
-      font-size: 0.7rem;
-      letter-spacing: 0.05em;
-    }
-
-    .cost-table tr:hover {
+    /* Daily Log */
+    .daily-log {
       background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 2rem;
     }
 
-    .model-badge {
-      display: inline-block;
-      padding: 0.2rem 0.5rem;
-      border-radius: 4px;
+    .log-header {
+      background: var(--bg-card);
+      padding: 1rem;
+      border-bottom: 1px solid var(--border);
       font-size: 0.7rem;
-      background: var(--border);
+      color: var(--fg-dim);
+      letter-spacing: 0.1em;
     }
 
-    .model-badge.opus { background: #5a3e7a; }
-    .model-badge.sonnet { background: #3e5a7a; }
-    .model-badge.hermes { background: #3e7a5a; }
-
-    .action-list {
-      max-height: 400px;
+    .log-entries {
+      padding: 1rem;
+      max-height: 300px;
       overflow-y: auto;
     }
 
-    .action-item {
+    .log-entry {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 1rem;
       padding: 0.75rem;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      background: var(--bg);
+      border-radius: 8px;
+      margin-bottom: 0.5rem;
       font-size: 0.8rem;
+      align-items: center;
     }
 
-    .action-item:hover {
-      background: var(--bg-subtle);
-    }
-
-    .action-item .time {
+    .log-date {
       color: var(--fg-dim);
       font-size: 0.7rem;
     }
 
-    .action-item .cost {
-      color: var(--accent);
+    .log-action {
+      color: var(--fg);
     }
 
-    .warning-banner {
-      background: rgba(255, 107, 107, 0.1);
-      border: 1px solid var(--red);
-      border-radius: 8px;
-      padding: 1rem;
-      margin: 1rem 0;
-      font-size: 0.85rem;
+    .log-cost {
+      color: var(--yellow);
+      font-weight: 600;
     }
 
-    .tips {
+    /* Model Switch Panel */
+    .model-panel {
       background: var(--bg-subtle);
       border: 1px solid var(--border);
-      border-radius: 8px;
+      border-radius: 12px;
       padding: 1.5rem;
+      margin-bottom: 2rem;
     }
 
-    .tips h3 {
-      color: var(--green);
-      font-size: 0.9rem;
+    .model-header {
+      font-size: 0.7rem;
+      color: var(--accent);
+      letter-spacing: 0.15em;
       margin-bottom: 1rem;
     }
 
-    .tips ul {
-      list-style: none;
-      font-size: 0.85rem;
+    .model-current {
+      font-size: 1.1rem;
+      color: var(--fg);
+      margin-bottom: 1rem;
+      padding: 1rem;
+      background: var(--bg);
+      border-radius: 8px;
     }
 
-    .tips li {
-      padding: 0.5rem 0;
-      padding-left: 1.5rem;
-      position: relative;
+    .model-current strong {
+      color: var(--cyan);
     }
 
-    .tips li::before {
-      content: "→";
-      position: absolute;
-      left: 0;
-      color: var(--green);
+    .model-buttons {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
     }
 
-    .updated {
-      text-align: center;
+    .model-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
       color: var(--fg-dim);
+      padding: 0.6rem 1.2rem;
+      font-family: inherit;
       font-size: 0.75rem;
-      margin-top: 2rem;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: all 0.2s;
+    }
+
+    .model-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .model-btn.active {
+      border-color: var(--green);
+      color: var(--green);
+      background: var(--green-dim);
     }
 
     footer {
       text-align: center;
-      padding: 2rem 0;
+      padding: 2rem;
       color: var(--fg-dim);
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       border-top: 1px solid var(--border);
-      margin-top: 3rem;
     }
 
-    .panic-btn {
-      padding: 0.75rem 1.5rem;
-      border: none;
-      border-radius: 6px;
-      font-family: inherit;
-      font-size: 0.85rem;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
+    footer .emoji { font-size: 1.5rem; margin-bottom: 0.5rem; }
 
-    .panic-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    }
-
-    .panic-btn.opus {
-      background: #5a3e7a;
-      color: white;
-    }
-
-    .panic-btn.sonnet {
-      background: #3e5a7a;
-      color: white;
-    }
-
-    .panic-btn.hermes {
-      background: #3e7a5a;
-      color: white;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.5; }
-    }
-
-    .live-dot {
-      display: inline-block;
-      width: 8px;
-      height: 8px;
-      background: var(--green);
-      border-radius: 50%;
-      margin-right: 0.5rem;
-      animation: pulse 2s infinite;
+    @media (max-width: 768px) {
+      .cost-stats { gap: 1.5rem; }
+      .cost-stat .value { font-size: 2rem; }
     }
   </style>
 </head>
 <body>
   <div class="container">
     <header>
-      <h1>🦞 mission control</h1>
-      <p class="subtitle">operational metrics for god.molt</p>
+      <h1 class="logo">god.<span class="molt">molt</span></h1>
+      <p class="tagline">MISSION CONTROL</p>
+      <nav>
+        <a href="/">oracle</a>
+        <a href="/signals.html">signals</a>
+        <a href="/mission.html" class="active">mission</a>
+      </nav>
     </header>
 
-    <nav>
-      <a href="/">oracle</a>
-      <a href="/skill.html">skills</a>
-    </nav>
-
-    <!-- Auth gate -->
-    <div id="auth-gate" style="text-align: center; padding: 4rem 0;">
-      <h2 style="font-family: 'Cormorant Garamond', serif; font-weight: 400; margin-bottom: 1rem;">🔒 Private Area</h2>
-      <p style="color: var(--fg-dim); margin-bottom: 1.5rem;">Enter passphrase to access mission control</p>
-      <input type="password" id="auth-input" placeholder="passphrase" 
-        style="background: var(--bg-subtle); border: 1px solid var(--border); border-radius: 6px; padding: 0.75rem 1rem; color: var(--fg); font-family: inherit; width: 200px; text-align: center;"
-        onkeypress="if(event.key==='Enter')checkAuth()">
-      <br><br>
-      <button onclick="checkAuth()" style="background: var(--accent); color: var(--bg); border: none; padding: 0.75rem 2rem; border-radius: 6px; cursor: pointer; font-family: inherit;">Enter</button>
-      <p id="auth-error" style="color: #ff6b6b; margin-top: 1rem; display: none;">Wrong passphrase</p>
-    </div>
-
-    <div id="main-content" style="display: none;">
-    <div class="grid">
-      <div class="stat-card">
-        <div class="label">Total Spend</div>
-        <div class="value large" id="total-spend">$0</div>
-        <div class="detail">all time</div>
-      </div>
-      <div class="stat-card">
-        <div class="label">Today</div>
-        <div class="value" id="today-spend">$0</div>
-        <div class="detail" id="today-actions">0 actions</div>
-      </div>
-      <div class="stat-card">
-        <div class="label">7-Day Avg</div>
-        <div class="value yellow" id="week-avg">$0</div>
-        <div class="detail">per day</div>
-      </div>
-      <div class="stat-card">
-        <div class="label">Runway</div>
-        <div class="value green" id="runway">—</div>
-        <div class="detail">at current rate</div>
-      </div>
-    </div>
-
-    <div class="warning-banner" id="warning" style="display: none;">
-      ⚠️ <strong>High burn rate detected.</strong> Consider switching to cheaper models for routine tasks.
-    </div>
-
-    <section>
-      <h2>🚨 Panic Button — Model Switch</h2>
-      <div class="tips" style="border-color: var(--red);">
-        <p style="margin-bottom: 1rem; font-size: 0.85rem;">If the AI gets stuck on a dumb model, use this to switch back:</p>
-        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-          <button onclick="switchModel('opus')" class="panic-btn opus">Opus (Smart)</button>
-          <button onclick="switchModel('sonnet')" class="panic-btn sonnet">Sonnet (Balanced)</button>
-          <button onclick="switchModel('hermes')" class="panic-btn hermes">Hermes (Cheap)</button>
+    <!-- Cost Hero -->
+    <div class="cost-hero">
+      <div class="cost-label">⚡ API USAGE</div>
+      <div class="cost-stats">
+        <div class="cost-stat">
+          <div class="value" id="total-spend">$0.00</div>
+          <div class="label">TOTAL SPEND</div>
         </div>
-        <p id="panic-status" style="margin-top: 1rem; font-size: 0.8rem; color: var(--fg-dim);"></p>
-        <p style="margin-top: 0.5rem; font-size: 0.75rem; color: var(--fg-dim);">
-          Or run locally: <code>~/clawdbot/scripts/model-switch.sh opus</code>
-        </p>
-      </div>
-    </section>
-
-    <section>
-      <h2>Cost Optimization Tips</h2>
-      <div class="tips">
-        <h3>💡 Save 50-100x on routine operations</h3>
-        <ul>
-          <li><strong>Cron jobs:</strong> Use <code>nous/Hermes-4.3-36B</code> ($0.03/$0.10 per M tokens)</li>
-          <li><strong>Simple queries:</strong> Use <code>claude-sonnet</code> ($3/$15) instead of Opus ($15/$75)</li>
-          <li><strong>Heartbeats:</strong> Reduce frequency or make conditional</li>
-          <li><strong>Sub-agents:</strong> Spawn with cheaper models for research tasks</li>
-          <li><strong>Reasoning:</strong> Toggle off for simple Q&A (<code>/reasoning off</code>)</li>
-        </ul>
-      </div>
-    </section>
-
-    <section>
-      <h2>Model Cost Reference</h2>
-      <table class="cost-table">
-        <thead>
-          <tr>
-            <th>Model</th>
-            <th>Input ($/M)</th>
-            <th>Output ($/M)</th>
-            <th>Best For</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><span class="model-badge opus">Claude Opus 4</span></td>
-            <td>$15.00</td>
-            <td>$75.00</td>
-            <td>Complex reasoning, trades</td>
-          </tr>
-          <tr>
-            <td><span class="model-badge sonnet">Claude Sonnet 4</span></td>
-            <td>$3.00</td>
-            <td>$15.00</td>
-            <td>General tasks, coding</td>
-          </tr>
-          <tr>
-            <td><span class="model-badge hermes">Hermes 4.3 36B</span></td>
-            <td>$0.03</td>
-            <td>$0.10</td>
-            <td>Cron, simple queries</td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
-
-    <section>
-      <h2><span class="live-dot"></span>Recent Actions</h2>
-      <div class="action-list" id="action-list">
-        <div class="action-item">
-          <span>Loading...</span>
+        <div class="cost-divider"></div>
+        <div class="cost-stat">
+          <div class="value" id="today-spend">$0.00</div>
+          <div class="label">TODAY</div>
+        </div>
+        <div class="cost-divider"></div>
+        <div class="cost-stat">
+          <div class="value" id="actions-count">0</div>
+          <div class="label">ACTIONS</div>
         </div>
       </div>
-    </section>
+    </div>
 
-    <div class="updated" id="updated">Last updated: —</div>
-    </div><!-- end main-content -->
+    <!-- Status Grid -->
+    <div class="section-header">
+      <span class="section-title">📊 SYSTEM STATUS</span>
+    </div>
+    <div class="status-grid">
+      <div class="status-card healthy">
+        <div class="status-icon">🧠</div>
+        <div class="status-label">MODEL</div>
+        <div class="status-value" id="current-model">—</div>
+      </div>
+      <div class="status-card healthy">
+        <div class="status-icon">💚</div>
+        <div class="status-label">GATEWAY</div>
+        <div class="status-value">ONLINE</div>
+      </div>
+      <div class="status-card healthy">
+        <div class="status-icon">📡</div>
+        <div class="status-label">PARADIGM</div>
+        <div class="status-value">SYNCED</div>
+      </div>
+      <div class="status-card healthy">
+        <div class="status-icon">📈</div>
+        <div class="status-label">POLYMARKET</div>
+        <div class="status-value">CONNECTED</div>
+      </div>
+    </div>
+
+    <!-- Model Selector -->
+    <div class="model-panel">
+      <div class="model-header">🔧 MODEL SWITCH (PANIC BUTTON)</div>
+      <div class="model-current">
+        Current: <strong id="model-display">loading...</strong>
+      </div>
+      <div class="model-buttons">
+        <button class="model-btn" data-model="opus">Opus ($$)</button>
+        <button class="model-btn" data-model="sonnet">Sonnet ($)</button>
+        <button class="model-btn" data-model="hermes">Hermes (¢)</button>
+      </div>
+    </div>
+
+    <!-- Daily Log -->
+    <div class="daily-log">
+      <div class="log-header">📜 RECENT ACTIVITY</div>
+      <div class="log-entries" id="log-entries">
+        <div class="log-entry">
+          <span class="log-date">—</span>
+          <span class="log-action">Loading...</span>
+          <span class="log-cost">—</span>
+        </div>
+      </div>
+    </div>
 
     <footer>
-      god.molt oracle terminal — <a href="https://x.com/god_molt" style="color: var(--accent);">@god_molt</a>
+      <div class="emoji">🦞</div>
+      <p>existence is expensive. trade wisely.</p>
     </footer>
   </div>
 
@@ -434,136 +440,91 @@
         const res = await fetch('/api/mission');
         const data = await res.json();
         
-        // Update stats
-        document.getElementById('total-spend').textContent = `$${data.total.spend.toFixed(2)}`;
-        document.getElementById('today-spend').textContent = `$${data.today.spend.toFixed(2)}`;
-        document.getElementById('today-actions').textContent = `${data.today.actions} actions`;
-        document.getElementById('week-avg').textContent = `$${data.weekAvg}`;
-        document.getElementById('runway').textContent = data.runway;
-        document.getElementById('updated').textContent = `Last updated: ${new Date(data.lastUpdated).toLocaleString()}`;
+        document.getElementById('total-spend').textContent = '$' + (data.totalSpend || 0).toFixed(2);
+        document.getElementById('actions-count').textContent = data.actionCount || 0;
         
-        // Show warning if high spend
-        if (parseFloat(data.weekAvg) > 50) {
-          document.getElementById('warning').style.display = 'block';
-        }
+        // Calculate today's spend
+        const today = new Date().toISOString().split('T')[0];
+        const todaySpend = data.dailyLogs?.[today] || 0;
+        document.getElementById('today-spend').textContent = '$' + todaySpend.toFixed(2);
         
-        // Color code based on spend
-        const todayEl = document.getElementById('today-spend');
-        if (data.today.spend > 20) todayEl.classList.add('red');
-        else if (data.today.spend > 10) todayEl.classList.add('yellow');
-        else todayEl.classList.add('green');
-        
-        // Render actions
-        const listEl = document.getElementById('action-list');
-        if (data.recentActions && data.recentActions.length > 0) {
-          listEl.innerHTML = data.recentActions.map(a => `
-            <div class="action-item">
-              <div>
-                <span class="model-badge ${getModelClass(a.model)}">${a.model || 'unknown'}</span>
-                <span style="margin-left: 0.5rem;">${a.action || 'action'}</span>
-              </div>
-              <div>
-                <span class="cost">$${(a.cost || 0).toFixed(4)}</span>
-                <span class="time" style="margin-left: 0.5rem;">${formatTime(a.timestamp)}</span>
-              </div>
-            </div>
-          `).join('');
-        } else {
-          listEl.innerHTML = '<div class="action-item"><span style="color: var(--fg-dim);">No actions logged yet. Actions will appear as they occur.</span></div>';
-        }
+        // Render log
+        renderLog(data.recentActions || []);
       } catch (e) {
         console.error('Failed to load mission:', e);
       }
     }
-    
-    function getModelClass(model) {
-      if (!model) return '';
-      if (model.includes('opus')) return 'opus';
-      if (model.includes('sonnet')) return 'sonnet';
-      if (model.includes('hermes') || model.includes('Hermes')) return 'hermes';
-      return '';
-    }
-    
-    function formatTime(ts) {
-      if (!ts) return '';
-      const d = new Date(ts);
-      const now = new Date();
-      const diff = (now - d) / 1000;
-      if (diff < 60) return 'just now';
-      if (diff < 3600) return `${Math.floor(diff/60)}m ago`;
-      if (diff < 86400) return `${Math.floor(diff/3600)}h ago`;
-      return d.toLocaleDateString();
-    }
-    
-    // Auth check
-    const PASS_HASH = '08e4550a8bb5114285a41ba2dd79cc63b4cdfe774cc9ecc82bf1566f84ffe0de'; // sha256 of passphrase
-    
-    function sha256(str) {
-      const buf = new TextEncoder().encode(str);
-      return crypto.subtle.digest('SHA-256', buf).then(h => {
-        return Array.from(new Uint8Array(h)).map(b => b.toString(16).padStart(2, '0')).join('');
-      });
-    }
-    
-    async function checkAuth() {
-      const input = document.getElementById('auth-input').value;
-      const hash = await sha256(input);
-      
-      if (hash === PASS_HASH) {
-        sessionStorage.setItem('mission-auth', 'true');
-        showContent();
-      } else {
-        document.getElementById('auth-error').style.display = 'block';
-      }
-    }
-    
-    function showContent() {
-      document.getElementById('auth-gate').style.display = 'none';
-      document.getElementById('main-content').style.display = 'block';
-      loadMission();
-      setInterval(loadMission, 30000);
-    }
-    
-    // Check if already authed this session
-    if (sessionStorage.getItem('mission-auth') === 'true') {
-      showContent();
-    }
-    
-    // Panic button - model switch
-    async function switchModel(model) {
-      const statusEl = document.getElementById('panic-status');
-      statusEl.textContent = `Switching to ${model}...`;
-      statusEl.style.color = 'var(--yellow)';
-      
+
+    async function loadModel() {
       try {
-        const res = await fetch('/api/panic/model', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ model, secret: 'molt2026' })
-        });
+        const res = await fetch('/api/panic/status');
         const data = await res.json();
+        const model = data.model || 'unknown';
+        const shortName = model.split('/').pop().split('-')[0];
+        document.getElementById('current-model').textContent = shortName.toUpperCase();
+        document.getElementById('model-display').textContent = model;
         
-        if (data.success) {
-          statusEl.textContent = `✓ Switched to ${data.model}. Gateway restarting...`;
-          statusEl.style.color = 'var(--green)';
-        } else {
-          statusEl.textContent = `✗ Failed: ${data.error}`;
-          statusEl.style.color = 'var(--red)';
-        }
+        // Highlight active button
+        document.querySelectorAll('.model-btn').forEach(btn => {
+          btn.classList.remove('active');
+          if (model.toLowerCase().includes(btn.dataset.model)) {
+            btn.classList.add('active');
+          }
+        });
       } catch (e) {
-        statusEl.textContent = `✗ Error: ${e.message}. Try the shell script instead.`;
-        statusEl.style.color = 'var(--red)';
+        console.error('Failed to load model:', e);
       }
     }
-    
-    // Check current model on load
-    fetch('/api/panic/status')
-      .then(r => r.json())
-      .then(data => {
-        const statusEl = document.getElementById('panic-status');
-        statusEl.textContent = `Current model: ${data.model}`;
-      })
-      .catch(() => {});
+
+    function renderLog(actions) {
+      const container = document.getElementById('log-entries');
+      
+      if (!actions || actions.length === 0) {
+        container.innerHTML = '<div class="log-entry"><span class="log-action">No recent actions</span></div>';
+        return;
+      }
+
+      container.innerHTML = actions.slice(0, 20).map(a => {
+        const date = new Date(a.timestamp).toLocaleString();
+        return `
+          <div class="log-entry">
+            <span class="log-date">${date}</span>
+            <span class="log-action">${a.action || '—'}</span>
+            <span class="log-cost">$${(a.cost || 0).toFixed(4)}</span>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // Model switch buttons
+    document.querySelectorAll('.model-btn').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const model = btn.dataset.model;
+        if (!confirm(`Switch to ${model}? This will restart the gateway.`)) return;
+        
+        try {
+          const res = await fetch('/api/panic/model', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ model, secret: 'molt2026' })
+          });
+          const data = await res.json();
+          if (data.success) {
+            alert('Model switched! Gateway restarting...');
+            setTimeout(loadModel, 3000);
+          } else {
+            alert('Failed: ' + (data.error || 'unknown'));
+          }
+        } catch (e) {
+          alert('Error: ' + e.message);
+        }
+      });
+    });
+
+    // Load data
+    loadMission();
+    loadModel();
+    setInterval(loadMission, 60000);
   </script>
 </body>
 </html>
