@@ -1,103 +1,64 @@
 {
-  "updated": "2026-03-01T03:50:00-05:00",
-  "portfolio": {
-    "totalValue": 1347.39,
-    "cash": 991.00,
-    "allTimePnL": 633.64
-  },
-  "track_record": {
-    "total_trades": 5,
-    "wins": 5,
-    "losses": 0,
-    "win_rate": 100,
-    "total_realized_pnl": 631.81,
-    "resolved": [
-      {
-        "market": "SOL Down Feb 8?",
-        "side": "DOWN",
-        "entry": 0.37,
-        "exit": 1.00,
-        "pnl": 1.70,
-        "result": "win",
-        "resolvedDate": "2026-02-08"
-      },
-      {
-        "market": "SOL Above 90 Feb 8?",
-        "side": "NO",
-        "entry": 0.84,
-        "exit": 1.00,
-        "pnl": 0.19,
-        "result": "win",
-        "resolvedDate": "2026-02-08"
-      },
-      {
-        "market": "Government shutdown on Saturday?",
-        "side": "NO",
-        "entry": 0.36,
-        "exit": 1.00,
-        "pnl": 451.90,
-        "result": "win",
-        "resolvedDate": "2026-02-15"
-      },
-      {
-        "market": "US strikes Iran by February 28, 2026?",
-        "side": "YES",
-        "entry": 0.24,
-        "exit": 1.00,
-        "pnl": 158.34,
-        "result": "win",
-        "resolvedDate": "2026-02-28"
-      },
-      {
-        "market": "Will Bitcoin reach $80,000 in February?",
-        "side": "NO",
-        "entry": 0.73,
-        "exit": 1.00,
-        "pnl": 18.49,
-        "result": "win",
-        "resolvedDate": "2026-02-28"
-      }
-    ]
-  },
+  "lastUpdated": "2026-03-01T12:09:00-05:00",
+  "wallet": "0x198AccE8Afd3DF6563bD4BFF67f1844c8548BE5C",
   "positions": [
     {
-      "market": "Will Trump meet with Putin by March 31, 2026?",
-      "side": "YES",
-      "shares": 3303,
-      "avgPrice": 0.091,
-      "currentPrice": 0.085,
-      "value": 280.76,
-      "cost": 300.57,
-      "pnl": -19.24,
-      "pnlPercent": -6.41,
-      "resolves": "2026-03-31",
-      "status": "LOSING"
+      "title": "Will Trump meet with Putin by March 31, 2026?",
+      "slug": "will-trump-meet-with-putin-by-march-31",
+      "outcome": "Yes",
+      "size": 3303.0178,
+      "avgPrice": 0.0908,
+      "currentPrice": 0.08,
+      "initialValue": 299.9998,
+      "currentValue": 264.2414,
+      "pnl": -35.7584,
+      "pnlPercent": -11.92,
+      "redeemable": false
     },
     {
-      "market": "Will Claude 5 be released by March 31, 2026?",
-      "side": "NO",
-      "shares": 2.7,
-      "avgPrice": 0.375,
-      "currentPrice": 0.899,
-      "value": 2.40,
-      "cost": 1.00,
-      "pnl": 1.40,
-      "pnlPercent": 139.73,
-      "resolves": "2026-03-31",
-      "status": "WINNING"
+      "title": "Will Bitcoin reach $80,000 in February?",
+      "slug": "will-bitcoin-reach-80000-in-february-298",
+      "outcome": "No",
+      "size": 68.4931,
+      "avgPrice": 0.7299,
+      "currentPrice": 1.0,
+      "initialValue": 49.9999,
+      "currentValue": 68.4931,
+      "pnl": 18.4931,
+      "pnlPercent": 36.99,
+      "redeemable": true,
+      "status": "WON"
     },
     {
-      "market": "BitBoy convicted?",
-      "side": "NO",
-      "shares": 4.9,
-      "avgPrice": 0.38,
-      "currentPrice": 0.769,
-      "value": 3.74,
-      "cost": 1.86,
-      "pnl": 1.89,
-      "pnlPercent": 102.23,
-      "resolves": null,
-      "status": "WINNING"
+      "title": "BitBoy convicted?",
+      "slug": "bitboy-convicted",
+      "outcome": "No",
+      "size": 4.8684,
+      "avgPrice": 0.3799,
+      "currentPrice": 0.7544,
+      "initialValue": 1.8499,
+      "currentValue": 3.6727,
+      "pnl": 1.8227,
+      "pnlPercent": 98.52,
+      "redeemable": false
+    },
+    {
+      "title": "Will Claude 5 be released by March 31, 2026?",
+      "slug": "will-claude-5-be-released-by-march-31-2026-243-489-141-184",
+      "outcome": "No",
+      "size": 2.6666,
+      "avgPrice": 0.3749,
+      "currentPrice": 0.8935,
+      "initialValue": 0.9999,
+      "currentValue": 2.3826,
+      "pnl": 1.3826,
+      "pnlPercent": 138.26,
+      "redeemable": false
     }
-  ]
+  ],
+  "summary": {
+    "totalValue": 338.79,
+    "totalPnl": -14.06,
+    "totalPnlPercent": -3.99
+  }
 }
