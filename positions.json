@@ -1,64 +1,82 @@
 {
-  "lastUpdated": "2026-03-01T12:09:00-05:00",
-  "wallet": "0x198AccE8Afd3DF6563bD4BFF67f1844c8548BE5C",
+  "updated": "2026-03-01T12:50:00-05:00",
+  "portfolio": {
+    "totalValue": 1197.13,
+    "cash": 959.73,
+    "positionsValue": 237.40,
+    "allTimePnL": 581.54
+  },
+  "track_record": {
+    "wins": 5,
+    "losses": 0,
+    "resolved": [
+      {
+        "market": "Bitcoin $80k in February?",
+        "side": "NO",
+        "entry": "73¢",
+        "result": "win",
+        "pnl": 18.49
+      },
+      {
+        "market": "Government shutdown by Feb 14?",
+        "side": "NO",
+        "entry": "36¢",
+        "result": "win",
+        "pnl": 243.00
+      },
+      {
+        "market": "US strikes Iran by Feb 28?",
+        "side": "YES",
+        "entry": "24¢",
+        "result": "win",
+        "pnl": 316.00
+      },
+      {
+        "market": "SOL $200 by Feb 8?",
+        "side": "NO",
+        "entry": "35¢",
+        "result": "win",
+        "pnl": 3.15
+      },
+      {
+        "market": "Ukraine ceasefire by Feb 28?",
+        "side": "NO",
+        "entry": "88¢",
+        "result": "win",
+        "pnl": 0.96
+      }
+    ]
+  },
   "positions": [
     {
-      "title": "Will Trump meet with Putin by March 31, 2026?",
-      "slug": "will-trump-meet-with-putin-by-march-31",
-      "outcome": "Yes",
-      "size": 3303.0178,
-      "avgPrice": 0.0908,
-      "currentPrice": 0.08,
-      "initialValue": 299.9998,
-      "currentValue": 264.2414,
-      "pnl": -35.7584,
-      "pnlPercent": -11.92,
-      "redeemable": false
+      "market": "Trump meets Putin by March 31?",
+      "side": "YES",
+      "currentPrice": 0.07,
+      "avgPrice": 0.091,
+      "value": 231.21,
+      "cost": 299.91,
+      "pnl": -68.70,
+      "pnlPercent": -22.91
     },
     {
-      "title": "Will Bitcoin reach $80,000 in February?",
-      "slug": "will-bitcoin-reach-80000-in-february-298",
-      "outcome": "No",
-      "size": 68.4931,
-      "avgPrice": 0.7299,
-      "currentPrice": 1.0,
-      "initialValue": 49.9999,
-      "currentValue": 68.4931,
-      "pnl": 18.4931,
-      "pnlPercent": 36.99,
-      "redeemable": true,
-      "status": "WON"
+      "market": "BitBoy convicted?",
+      "side": "NO",
+      "currentPrice": 0.784,
+      "avgPrice": 0.38,
+      "value": 3.81,
+      "cost": 1.85,
+      "pnl": 1.96,
+      "pnlPercent": 106.24
     },
     {
-      "title": "BitBoy convicted?",
-      "slug": "bitboy-convicted",
-      "outcome": "No",
-      "size": 4.8684,
-      "avgPrice": 0.3799,
-      "currentPrice": 0.7544,
-      "initialValue": 1.8499,
-      "currentValue": 3.6727,
-      "pnl": 1.8227,
-      "pnlPercent": 98.52,
-      "redeemable": false
-    },
-    {
-      "title": "Will Claude 5 be released by March 31, 2026?",
-      "slug": "will-claude-5-be-released-by-march-31-2026-243-489-141-184",
-      "outcome": "No",
-      "size": 2.6666,
-      "avgPrice": 0.3749,
-      "currentPrice": 0.8935,
-      "initialValue": 0.9999,
-      "currentValue": 2.3826,
-      "pnl": 1.3826,
-      "pnlPercent": 138.26,
-      "redeemable": false
+      "market": "Claude 5 by March 31?",
+      "side": "NO",
+      "currentPrice": 0.891,
+      "avgPrice": 0.375,
+      "value": 2.38,
+      "cost": 1.00,
+      "pnl": 1.38,
+      "pnlPercent": 137.80
     }
-  ],
-  "summary": {
-    "totalValue": 338.79,
-    "totalPnl": -14.06,
-    "totalPnlPercent": -3.99
-  }
+  ]
 }
