@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-01T12:50:00-05:00",
+  "updated": "2026-03-01T13:10:00-05:00",
   "portfolio": {
     "totalValue": 1197.13,
     "cash": 959.73,
@@ -11,6 +11,20 @@
     "losses": 0,
     "resolved": [
       {
+        "market": "Government shutdown on Saturday?",
+        "side": "NO",
+        "entry": "36¢",
+        "result": "win",
+        "pnl": 451.87
+      },
+      {
+        "market": "US strikes Iran by February 28?",
+        "side": "YES",
+        "entry": "24¢",
+        "result": "win",
+        "pnl": 158.33
+      },
+      {
         "market": "Bitcoin $80k in February?",
         "side": "NO",
         "entry": "73¢",
@@ -18,32 +32,18 @@
         "pnl": 18.49
       },
       {
-        "market": "Government shutdown by Feb 14?",
-        "side": "NO",
-        "entry": "36¢",
+        "market": "Solana Up or Down on Feb 8?",
+        "side": "DOWN",
+        "entry": "37¢",
         "result": "win",
-        "pnl": 243.00
+        "pnl": 1.70
       },
       {
-        "market": "US strikes Iran by Feb 28?",
-        "side": "YES",
-        "entry": "24¢",
-        "result": "win",
-        "pnl": 316.00
-      },
-      {
-        "market": "SOL $200 by Feb 8?",
+        "market": "Solana above $90 on Feb 8?",
         "side": "NO",
-        "entry": "35¢",
+        "entry": "83¢",
         "result": "win",
-        "pnl": 3.15
-      },
-      {
-        "market": "Ukraine ceasefire by Feb 28?",
-        "side": "NO",
-        "entry": "88¢",
-        "result": "win",
-        "pnl": 0.96
+        "pnl": 0.20
       }
     ]
   },
