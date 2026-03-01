@@ -1,90 +1,81 @@
 {
-  "timestamp": "2026-02-25T04:09:16.940Z",
+  "timestamp": "2026-03-01T02:50:42.442346",
+  "n_signals": 5,
   "signals": [
     {
-      "type": "INFLOW",
-      "category": "UNKNOWN",
-      "delta": "+3097.2%",
-      "voiRatio": "31.97",
-      "strength": "STRONG",
-      "action": "LOOK FOR LAGGING MARKETS",
-      "tags": [
-        "unknown"
-      ]
+      "timestamp": "2026-03-01T02:50:42.442286",
+      "signal_type": "FLOW_MOMENTUM",
+      "market_id": "category:unknown",
+      "market_name": "UNKNOWN markets",
+      "direction": "BUY_YES",
+      "confidence": 0.9,
+      "edge_estimate": 1.7621270293809908,
+      "reasoning": "UNKNOWN +352.4% WoW. Money flowing in. Look for lagging YES prices.",
+      "paradigm_data": {
+        "category": "UNKNOWN",
+        "delta": 352.42540587619817,
+        "volume": 1108900936.1944501
+      }
     },
     {
-      "type": "HOT_MONEY",
-      "category": "UNKNOWN",
-      "delta": "+3097.2%",
-      "voiRatio": "31.97",
-      "strength": "VERY_HOT",
-      "action": "MOMENTUM PLAY",
-      "tags": [
-        "unknown"
-      ]
+      "timestamp": "2026-03-01T02:50:42.442303",
+      "signal_type": "FLOW_MOMENTUM",
+      "market_id": "category:politics",
+      "market_name": "Politics markets",
+      "direction": "BUY_YES",
+      "confidence": 0.9,
+      "edge_estimate": 0.3239139512265933,
+      "reasoning": "Politics +64.8% WoW. Money flowing in. Look for lagging YES prices.",
+      "paradigm_data": {
+        "category": "Politics",
+        "delta": 64.78279024531865,
+        "volume": 633486850.0954424
+      }
     },
     {
-      "type": "OUTFLOW",
-      "category": "Crypto",
-      "delta": "-48.5%",
-      "voiRatio": "0.51",
-      "strength": "STRONG",
-      "action": "CONSIDER EXITS",
-      "tags": [
-        "crypto",
-        "bitcoin",
-        "ethereum",
-        "defi"
-      ]
+      "timestamp": "2026-03-01T02:50:42.442310",
+      "signal_type": "FLOW_MOMENTUM",
+      "market_id": "category:culture",
+      "market_name": "Culture markets",
+      "direction": "BUY_NO",
+      "confidence": 0.9,
+      "edge_estimate": 0.25921631289223207,
+      "reasoning": "Culture -51.8% WoW. Money exiting. Look for overpriced YES.",
+      "paradigm_data": {
+        "category": "Culture",
+        "delta": -51.843262578446414,
+        "volume": 83077018.85362403
+      }
     },
     {
-      "type": "INFLOW",
-      "category": "Culture",
-      "delta": "+36.2%",
-      "voiRatio": "1.36",
-      "strength": "STRONG",
-      "action": "LOOK FOR LAGGING MARKETS",
-      "tags": [
-        "culture",
-        "entertainment",
-        "celebrities"
-      ]
+      "timestamp": "2026-03-01T02:50:42.442307",
+      "signal_type": "FLOW_MOMENTUM",
+      "market_id": "category:crypto",
+      "market_name": "Crypto markets",
+      "direction": "BUY_NO",
+      "confidence": 0.9,
+      "edge_estimate": 0.22960417994649057,
+      "reasoning": "Crypto -45.9% WoW. Money exiting. Look for overpriced YES.",
+      "paradigm_data": {
+        "category": "Crypto",
+        "delta": -45.92083598929811,
+        "volume": 340368728.7608991
+      }
     },
     {
-      "type": "INFLOW",
-      "category": "Early Polymarket Trades",
-      "delta": "+84.4%",
-      "voiRatio": "1.84",
-      "strength": "STRONG",
-      "action": "LOOK FOR LAGGING MARKETS",
-      "tags": [
-        "early polymarket trades"
-      ]
-    },
-    {
-      "type": "OUTFLOW",
-      "category": "Economics",
-      "delta": "-17.3%",
-      "voiRatio": "0.83",
-      "strength": "MODERATE",
-      "action": "CONSIDER EXITS",
-      "tags": [
-        "economy",
-        "fed",
-        "inflation",
-        "markets"
-      ]
-    },
-    {
-      "type": "OUTFLOW",
-      "category": "Financials",
-      "delta": "-26.1%",
-      "voiRatio": "0.74",
-      "strength": "MODERATE",
-      "action": "CONSIDER EXITS",
-      "tags": [
-        "financials"
-      ]
+      "timestamp": "2026-03-01T02:50:42.442298",
+      "signal_type": "HOT_MONEY",
+      "market_id": "category:unknown",
+      "market_name": "UNKNOWN markets",
+      "direction": "HOLD",
+      "confidence": 0.5,
+      "edge_estimate": 0.0,
+      "reasoning": "UNKNOWN V/OI = 4.5. Active speculation. Trade momentum, not value.",
+      "paradigm_data": {
+        "category": "UNKNOWN",
+        "voi_ratio": 4.524254058761981,
+        "volume": 1108900936.1944501
+      }
     }
   ]
 }
