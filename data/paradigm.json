@@ -1,101 +1,101 @@
 {
-  "timestamp": "2026-03-01T14:06:20.763Z",
+  "timestamp": "2026-03-02T14:00:05.515Z",
   "period": {
-    "start": "2026-02-22",
-    "end": "2026-03-01"
+    "start": "2026-02-23",
+    "end": "2026-03-02"
   },
   "categories": {
     "Sports": {
-      "currentVolume": 2670912739.890701,
-      "previousVolume": 2686927693.9908705,
-      "weekOverWeekDelta": -0.5960321945389898,
-      "volumeOIRatio": 0.9940396780546101
+      "currentVolume": 2553579388.012406,
+      "previousVolume": 2796302896.743244,
+      "weekOverWeekDelta": -8.680157969064433,
+      "volumeOIRatio": 0.9131984203093557
     },
     "UNKNOWN": {
-      "currentVolume": 1108900936.1944501,
-      "previousVolume": 245101385.06631303,
-      "weekOverWeekDelta": 352.42540587619817,
-      "volumeOIRatio": 4.524254058761981
+      "currentVolume": 1258679565.1599982,
+      "previousVolume": 351122341.26829803,
+      "weekOverWeekDelta": 258.4732206482474,
+      "volumeOIRatio": 3.5847322064824736
     },
     "Politics": {
-      "currentVolume": 633486850.0954424,
-      "previousVolume": 384437506.582056,
-      "weekOverWeekDelta": 64.78279024531865,
-      "volumeOIRatio": 1.6478279024531866
+      "currentVolume": 686183089.228345,
+      "previousVolume": 375638663.0374719,
+      "weekOverWeekDelta": 82.67104980082807,
+      "volumeOIRatio": 1.8267104980082807
     },
     "Crypto": {
-      "currentVolume": 340368728.7608991,
-      "previousVolume": 629389775.1332519,
-      "weekOverWeekDelta": -45.92083598929811,
-      "volumeOIRatio": 0.5407916401070189
+      "currentVolume": 339003722.333129,
+      "previousVolume": 554811565.1254619,
+      "weekOverWeekDelta": -38.897502568017195,
+      "volumeOIRatio": 0.611024974319828
     },
     "Culture": {
-      "currentVolume": 83077018.85362403,
-      "previousVolume": 172513802.43305504,
-      "weekOverWeekDelta": -51.843262578446414,
-      "volumeOIRatio": 0.48156737421553586
+      "currentVolume": 80532331.03660502,
+      "previousVolume": 167287606.01047105,
+      "weekOverWeekDelta": -51.859953670707526,
+      "volumeOIRatio": 0.48140046329292474
     },
     "Economics": {
-      "currentVolume": 50759498.768125005,
-      "previousVolume": 54001918.39218799,
-      "weekOverWeekDelta": -6.004267479008744,
-      "volumeOIRatio": 0.9399573252099126
+      "currentVolume": 54863546.04247,
+      "previousVolume": 43109752.33074501,
+      "weekOverWeekDelta": 27.264813821123298,
+      "volumeOIRatio": 1.272648138211233
     },
     "STEM": {
-      "currentVolume": 49806610.75583301,
-      "previousVolume": 57876288.06350801,
-      "weekOverWeekDelta": -13.942976610421349,
-      "volumeOIRatio": 0.8605702338957866
+      "currentVolume": 48489472.524523,
+      "previousVolume": 56212204.08749098,
+      "weekOverWeekDelta": -13.7385318514606,
+      "volumeOIRatio": 0.862614681485394
     },
     "Financials": {
-      "currentVolume": 29623645.827361003,
-      "previousVolume": 33521580.128189,
-      "weekOverWeekDelta": -11.628134133062968,
-      "volumeOIRatio": 0.8837186586693704
+      "currentVolume": 29632611.516782008,
+      "previousVolume": 32326566.09402399,
+      "weekOverWeekDelta": -8.333562461928173,
+      "volumeOIRatio": 0.9166643753807182
     },
     "Early Polymarket Trades": {
-      "currentVolume": 25024.532760000002,
-      "previousVolume": 24920.260607000004,
-      "weekOverWeekDelta": 0.41842320449373,
-      "volumeOIRatio": 1.0041842320449372
+      "currentVolume": 26075.607394000002,
+      "previousVolume": 23320.307784000004,
+      "weekOverWeekDelta": 11.815022492500727,
+      "volumeOIRatio": 1.1181502249250073
     }
   },
   "deltas": [
     {
       "category": "UNKNOWN",
-      "delta": 352.42540587619817
+      "delta": 258.4732206482474
     },
     {
       "category": "Politics",
-      "delta": 64.78279024531865
-    },
-    {
-      "category": "Early Polymarket Trades",
-      "delta": 0.41842320449373
-    },
-    {
-      "category": "Sports",
-      "delta": -0.5960321945389898
+      "delta": 82.67104980082807
     },
     {
       "category": "Economics",
-      "delta": -6.004267479008744
+      "delta": 27.264813821123298
+    },
+    {
+      "category": "Early Polymarket Trades",
+      "delta": 11.815022492500727
     },
     {
       "category": "Financials",
-      "delta": -11.628134133062968
+      "delta": -8.333562461928173
+    },
+    {
+      "category": "Sports",
+      "delta": -8.680157969064433
     },
     {
       "category": "STEM",
-      "delta": -13.942976610421349
+      "delta": -13.7385318514606
     },
     {
       "category": "Crypto",
-      "delta": -45.92083598929811
+      "delta": -38.897502568017195
     },
     {
       "category": "Culture",
-      "delta": -51.843262578446414
+      "delta": -51.859953670707526
     }
   ]
 }
