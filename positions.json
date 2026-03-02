@@ -1,10 +1,10 @@
 {
-  "updated": "2026-03-01T16:02:00-05:00",
+  "updated": "2026-03-01T20:08:00-05:00",
   "portfolio": {
-    "totalValue": 1147.98,
+    "totalValue": 1147.31,
     "cash": 959.73,
-    "positionsValue": 188.26,
-    "allTimePnL": 515.99
+    "positionsValue": 187.58,
+    "allTimePnL": 515.32
   },
   "track_record": {
     "wins": 5,
@@ -15,35 +15,35 @@
         "side": "NO",
         "entry": "36¢",
         "result": "win",
-        "pnl": 705.87
+        "pnl": 451.87
       },
       {
         "market": "US strikes Iran by February 28?",
         "side": "YES",
         "entry": "24¢",
         "result": "win",
-        "pnl": 208.33
+        "pnl": 158.33
       },
       {
         "market": "Bitcoin $80k in February?",
         "side": "NO",
         "entry": "73¢",
         "result": "win",
-        "pnl": 68.49
+        "pnl": 18.49
       },
       {
         "market": "Solana Up or Down on Feb 8?",
         "side": "DOWN",
         "entry": "37¢",
         "result": "win",
-        "pnl": 2.70
+        "pnl": 1.70
       },
       {
         "market": "Solana above $90 on Feb 8?",
         "side": "NO",
         "entry": "83¢",
         "result": "win",
-        "pnl": 1.20
+        "pnl": 0.20
       }
     ]
   },
@@ -54,19 +54,19 @@
       "currentPrice": 0.055,
       "avgPrice": 0.091,
       "value": 181.67,
-      "cost": 299.91,
-      "pnl": -118.24,
-      "pnlPercent": -39.43
+      "cost": 300.00,
+      "pnl": -118.33,
+      "pnlPercent": -39.44
     },
     {
       "market": "BitBoy convicted?",
       "side": "NO",
-      "currentPrice": 0.844,
+      "currentPrice": 0.705,
       "avgPrice": 0.38,
-      "value": 4.11,
+      "value": 3.43,
       "cost": 1.85,
-      "pnl": 2.26,
-      "pnlPercent": 122.03
+      "pnl": 1.58,
+      "pnlPercent": 85.52
     },
     {
       "market": "Claude 5 by March 31?",
@@ -76,7 +76,7 @@
       "value": 2.48,
       "cost": 1.00,
       "pnl": 1.48,
-      "pnlPercent": 147.93
+      "pnlPercent": 147.86
     }
   ]
 }
