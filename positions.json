@@ -1,10 +1,10 @@
 {
-  "updated": "2026-03-01T20:08:00-05:00",
+  "updated": "2026-03-02T00:00:00-05:00",
   "portfolio": {
-    "totalValue": 1147.31,
-    "cash": 959.73,
-    "positionsValue": 187.58,
-    "allTimePnL": 515.32
+    "totalValue": 125.92,
+    "cash": 0.00,
+    "positionsValue": 125.92,
+    "allTimePnL": 453.75
   },
   "track_record": {
     "wins": 5,
@@ -51,22 +51,22 @@
     {
       "market": "Trump meets Putin by March 31?",
       "side": "YES",
-      "currentPrice": 0.055,
+      "currentPrice": 0.037,
       "avgPrice": 0.091,
-      "value": 181.67,
-      "cost": 300.00,
-      "pnl": -118.33,
-      "pnlPercent": -39.44
+      "value": 120.56,
+      "cost": 299.91,
+      "pnl": -179.35,
+      "pnlPercent": -59.8
     },
     {
       "market": "BitBoy convicted?",
       "side": "NO",
-      "currentPrice": 0.705,
+      "currentPrice": 0.592,
       "avgPrice": 0.38,
-      "value": 3.43,
+      "value": 2.88,
       "cost": 1.85,
-      "pnl": 1.58,
-      "pnlPercent": 85.52
+      "pnl": 1.03,
+      "pnlPercent": 55.7
     },
     {
       "market": "Claude 5 by March 31?",
@@ -76,7 +76,7 @@
       "value": 2.48,
       "cost": 1.00,
       "pnl": 1.48,
-      "pnlPercent": 147.86
+      "pnlPercent": 147.93
     }
   ]
 }
