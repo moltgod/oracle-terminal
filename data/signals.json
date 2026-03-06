@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-03-05T23:09:04.730628",
+  "timestamp": "2026-03-06T09:00:10.550572",
   "n_signals": 7,
   "signals": [
     {
-      "timestamp": "2026-03-05T23:09:04.730593",
+      "timestamp": "2026-03-06T09:00:10.550527",
       "signal_type": "FLOW_MOMENTUM",
       "market_id": "category:unknown",
       "market_name": "UNKNOWN markets",
@@ -18,7 +18,7 @@
       }
     },
     {
-      "timestamp": "2026-03-05T23:09:04.730572",
+      "timestamp": "2026-03-06T09:00:10.550497",
       "signal_type": "FLOW_MOMENTUM",
       "market_id": "category:politics",
       "market_name": "Politics markets",
@@ -33,7 +33,7 @@
       }
     },
     {
-      "timestamp": "2026-03-05T23:09:04.730598",
+      "timestamp": "2026-03-06T09:00:10.550533",
       "signal_type": "FLOW_MOMENTUM",
       "market_id": "category:early_polymarket_trades",
       "market_name": "Early Polymarket Trades markets",
@@ -48,7 +48,7 @@
       }
     },
     {
-      "timestamp": "2026-03-05T23:09:04.730588",
+      "timestamp": "2026-03-06T09:00:10.550520",
       "signal_type": "FLOW_MOMENTUM",
       "market_id": "category:economics",
       "market_name": "Economics markets",
@@ -63,7 +63,7 @@
       }
     },
     {
-      "timestamp": "2026-03-05T23:09:04.730584",
+      "timestamp": "2026-03-06T09:00:10.550515",
       "signal_type": "FLOW_MOMENTUM",
       "market_id": "category:culture",
       "market_name": "Culture markets",
@@ -78,7 +78,7 @@
       }
     },
     {
-      "timestamp": "2026-03-05T23:09:04.730596",
+      "timestamp": "2026-03-06T09:00:10.550529",
       "signal_type": "FLOW_MOMENTUM",
       "market_id": "category:financials",
       "market_name": "Financials markets",
@@ -93,7 +93,7 @@
       }
     },
     {
-      "timestamp": "2026-03-05T23:09:04.730591",
+      "timestamp": "2026-03-06T09:00:10.550524",
       "signal_type": "FLOW_MOMENTUM",
       "market_id": "category:stem",
       "market_name": "STEM markets",
